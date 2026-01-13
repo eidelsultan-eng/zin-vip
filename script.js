@@ -284,7 +284,10 @@ addProductForm.addEventListener('submit', (e) => {
 
 // Update renderProducts to include custom products and persistence
 const originalRenderProducts = renderProducts;
-renderProducts = function (filter = 'all') {
+let currentFilter = 'all';
+
+renderProducts = function (filter = 'all', showAll = false) {
+    currentFilter = filter;
     productsGrid.innerHTML = '';
 
     const allProducts = [...products, ...customProducts];
@@ -311,7 +314,9 @@ renderProducts = function (filter = 'all') {
         return;
     }
 
-    filteredProducts.forEach(product => {
+    const productsToDisplay = showAll ? filteredProducts : filteredProducts.slice(0, 5);
+
+    productsToDisplay.forEach(product => {
         const card = document.createElement('div');
         card.className = 'product-card';
         card.innerHTML = `
@@ -328,6 +333,19 @@ renderProducts = function (filter = 'all') {
         `;
         productsGrid.appendChild(card);
     });
+
+    // Add "Show More" button if needed
+    if (!showAll && filteredProducts.length > 5) {
+        const showMoreContainer = document.createElement('div');
+        showMoreContainer.style.cssText = 'grid-column: 1/-1; text-align: center; margin-top: 30px;';
+        showMoreContainer.innerHTML = `
+            <button class="btn btn-primary" onclick="renderProducts('${filter}', true)" style="padding: 12px 40px; border-radius: 50px;">
+                عرض المزيد
+                <i class="fas fa-chevron-down" style="margin-right: 8px;"></i>
+            </button>
+        `;
+        productsGrid.appendChild(showMoreContainer);
+    }
 };
 
 // Re-render initially to catch custom products

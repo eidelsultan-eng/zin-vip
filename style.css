@@ -187,14 +187,14 @@ body {
 
 .badge {
     display: inline-block;
-    padding: 3px 12px;
+    padding: 6px 20px;
     background: rgba(0, 182, 189, 0.1);
     color: var(--primary-color);
     border-radius: 50px;
     font-weight: 700;
-    margin-bottom: 8px;
+    margin-bottom: 12px;
     border: 1px solid rgba(0, 182, 189, 0.2);
-    font-size: 0.9rem;
+    font-size: 1.1rem;
 }
 
 .hero-text p {
@@ -388,8 +388,8 @@ body {
 }
 
 .section-title h2 {
-    font-size: 2.5rem;
-    margin-bottom: 10px;
+    font-size: 2rem;
+    margin-bottom: 8px;
 }
 
 .section-title p {
@@ -936,10 +936,10 @@ body {
         flex-direction: row;
         align-items: center;
         justify-content: space-between;
-        padding: 5px 12px;
-        border-radius: 12px;
-        min-height: 50px;
-        gap: 10px;
+        padding: 12px 18px;
+        border-radius: 15px;
+        min-height: 70px;
+        gap: 12px;
     }
 
     .card-badge {
@@ -960,9 +960,9 @@ body {
     }
 
     .number-display h2 {
-        font-size: 1.1rem;
+        font-size: 1.3rem;
         margin: 0;
-        letter-spacing: 0;
+        letter-spacing: 0.5px;
     }
 
     .card-info {
@@ -999,23 +999,23 @@ body {
     }
 
     .logo h1 {
-        font-size: 13px;
+        font-size: 17px;
         white-space: nowrap;
     }
 
     .logo h1 span {
         display: inline;
-        font-size: 10px;
+        font-size: 13px;
     }
 
     .search-box {
-        width: 90px;
-        padding: 4px 6px;
+        width: 115px;
+        padding: 5px 10px;
     }
 
     .search-box input {
-        width: 55px;
-        font-size: 0.7rem;
+        width: 80px;
+        font-size: 0.8rem;
     }
 
     .hero-text h1 {
@@ -1024,12 +1024,16 @@ body {
     }
 
     .hero {
-        padding-top: 50px;
-        padding-bottom: 5px;
+        padding-top: 115px;
+        padding-bottom: 15px;
     }
 
     .section-title {
-        margin-bottom: 10px;
+        margin-bottom: 8px;
+    }
+
+    .section-title h2 {
+        font-size: 1.5rem;
     }
 
     .products-grid {
@@ -1037,12 +1041,32 @@ body {
     }
 
     .number-display h2 {
-        font-size: 0.9rem;
+        font-size: 1.4rem;
     }
 
     .add-to-cart {
-        min-width: 85px;
-        padding: 4px 6px;
-        font-size: 0.7rem;
+        min-width: 110px;
+        padding: 8px 12px;
+        font-size: 0.85rem;
+    }
+
+    .product-card {
+        padding: 25px 20px;
+        min-height: 150px;
+        border-radius: 25px;
+        flex-direction: column;
+        /* Switching to column to make it feel 'big' like two cells */
+        justify-content: center;
+        gap: 15px;
+    }
+
+    .number-display h2 {
+        font-size: 1.8rem;
+    }
+
+    .add-to-cart {
+        min-width: 100%;
+        padding: 12px;
+        font-size: 1rem;
     }
 }
