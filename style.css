@@ -888,12 +888,12 @@ body {
     }
 
     .logo h1 {
-        font-size: 14px;
+        font-size: 22px;
         white-space: nowrap;
     }
 
     .logo h1 span {
-        font-size: 11px;
+        font-size: 18px;
     }
 
     .search-box {
@@ -999,18 +999,35 @@ body {
     }
 
     .logo h1 {
-        font-size: 17px;
+        font-size: 24px;
         white-space: nowrap;
     }
 
     .logo h1 span {
         display: inline;
-        font-size: 13px;
+        font-size: 18px;
+    }
+
+    .nav-actions {
+        gap: 15px;
+    }
+
+    .cart-icon {
+        margin-right: 5px;
+        /* Push it left */
+    }
+
+    .container {
+        padding: 0 12px;
     }
 
     .search-box {
-        width: 115px;
-        padding: 5px 10px;
+        width: 105px;
+        padding: 4px 8px;
+    }
+
+    .section-title h2 {
+        font-size: 1.8rem;
     }
 
     .search-box input {
@@ -1024,8 +1041,9 @@ body {
     }
 
     .hero {
-        padding-top: 115px;
-        padding-bottom: 15px;
+        padding-top: 180px;
+        /* مسافة 3 سم تقريباً بعد الهيدر */
+        padding-bottom: 20px;
     }
 
     .section-title {
