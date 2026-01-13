@@ -154,8 +154,8 @@ body {
 
 /* Hero Section */
 .hero {
-    padding-top: 150px;
-    padding-bottom: 80px;
+    padding-top: 120px;
+    padding-bottom: 40px;
     position: relative;
     overflow: hidden;
 }
@@ -867,8 +867,8 @@ body {
     }
 
     .hero {
-        padding-top: 120px;
-        padding-bottom: 50px;
+        padding-top: 100px;
+        padding-bottom: 30px;
     }
 
     .contact-box {
@@ -888,28 +888,41 @@ body {
     }
 
     .logo h1 {
-        font-size: 18px;
+        font-size: 14px;
+        white-space: nowrap;
     }
 
     .logo h1 span {
-        font-size: 14px;
+        font-size: 11px;
     }
 
     .search-box {
-        width: 130px;
+        width: 100px;
     }
 
     .search-box input {
-        width: 90px;
+        width: 65px;
     }
 
     .hero {
-        padding-top: 100px;
-        padding-bottom: 40px;
+        padding-top: 60px;
+        padding-bottom: 10px;
+    }
+
+    section {
+        padding: 40px 0;
     }
 
     .hero-text h1 {
-        font-size: 2rem;
+        font-size: 1.8rem;
+        margin-bottom: 5px;
+    }
+
+    .badge {
+        margin-bottom: 5px;
+    }
+
+    .hero-text p {
         margin-bottom: 10px;
     }
 
@@ -986,34 +999,50 @@ body {
     }
 
     .logo h1 {
-        font-size: 14px;
+        font-size: 13px;
+        white-space: nowrap;
     }
 
     .logo h1 span {
-        display: none;
+        display: inline;
+        font-size: 10px;
     }
 
     .search-box {
-        width: 105px;
-        padding: 4px 8px;
+        width: 90px;
+        padding: 4px 6px;
     }
 
     .search-box input {
-        width: 65px;
-        font-size: 0.75rem;
+        width: 55px;
+        font-size: 0.7rem;
     }
 
     .hero-text h1 {
-        font-size: 1.6rem;
+        font-size: 1.4rem;
+        margin-bottom: 5px;
+    }
+
+    .hero {
+        padding-top: 50px;
+        padding-bottom: 5px;
+    }
+
+    .section-title {
+        margin-bottom: 10px;
+    }
+
+    .products-grid {
+        grid-template-columns: 1fr !important;
     }
 
     .number-display h2 {
-        font-size: 0.95rem;
+        font-size: 0.9rem;
     }
 
     .add-to-cart {
-        min-width: 90px;
-        padding: 4px 8px;
-        font-size: 0.75rem;
+        min-width: 85px;
+        padding: 4px 6px;
+        font-size: 0.7rem;
     }
 }
