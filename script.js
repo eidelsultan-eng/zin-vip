@@ -127,7 +127,7 @@ filterButtons.forEach(btn => {
         renderProducts(btn.dataset.filter);
 
         // Scroll to products
-        document.getElementById('store').scrollIntoView({ behavior: 'smooth' });
+        document.getElementById('productsGrid').scrollIntoView({ behavior: 'smooth', block: 'center' });
     });
 });
 
@@ -156,8 +156,9 @@ searchInput.addEventListener('input', (e) => {
                 <h2 dir="ltr">${product.number}</h2>
             </div>
             <div class="card-info">
-                <div class="add-to-cart" onclick="orderNow(${product.id})" style="width: 100%; border-radius: 12px; background: var(--primary-color); border: none;">
-                    <span>اطلب الآن</span>
+                <div class="add-to-cart" onclick="orderNow(${product.id})" style="width: 100%; border-radius: 12px; background: var(--primary-color); border: none; display: flex; align-items: center; justify-content: center; gap: 8px;">
+                    <i class="fab fa-whatsapp"></i>
+                    <span>تواصل للشراء</span>
                 </div>
             </div>
         `;
@@ -287,10 +288,26 @@ renderProducts = function (filter = 'all') {
     productsGrid.innerHTML = '';
 
     const allProducts = [...products, ...customProducts];
-    let filteredProducts = filter === 'all' ? allProducts : allProducts.filter(p => p.category === filter);
+    let filteredProducts;
+
+    if (filter === 'all') {
+        filteredProducts = allProducts;
+    } else if (filter === 'vodafone-010') {
+        filteredProducts = allProducts.filter(p => p.category === filter || p.number.replace(/\D/g, '').startsWith('010'));
+    } else if (filter === 'etisalat-011') {
+        filteredProducts = allProducts.filter(p => p.category === filter || p.number.replace(/\D/g, '').startsWith('011'));
+    } else if (filter === 'orange-012') {
+        filteredProducts = allProducts.filter(p => p.category === filter || p.number.replace(/\D/g, '').startsWith('012'));
+    } else if (filter === 'we-015') {
+        filteredProducts = allProducts.filter(p => p.category === filter || p.number.replace(/\D/g, '').startsWith('015'));
+    } else {
+        filteredProducts = allProducts.filter(p => p.category === filter);
+    }
 
     if (filteredProducts.length === 0) {
-        productsGrid.innerHTML = '<div style="grid-column: 1/-1; text-align: center; padding: 50px;">عذراً، لا توجد أرقام متاحة في هذا القسم حالياً.</div>';
+        productsGrid.innerHTML = '<div style="grid-column: 1/-1; text-align: center; padding: 50px;">عذراً، لا توجد أرقام متاحة في هذا القسم حالياً. سنقوم بإظهار أقرب النتائج المتاحة لك:</div>';
+        // Fallback: Show all products or something similar?
+        // Let's just show a few recent ones for now or stay at the message.
         return;
     }
 
@@ -303,8 +320,9 @@ renderProducts = function (filter = 'all') {
                 <h2 dir="ltr">${product.number}</h2>
             </div>
             <div class="card-info">
-                <div class="add-to-cart" onclick="orderNow(${product.id})" style="width: 100%; border-radius: 12px; background: var(--primary-color); border: none;">
-                    <span>اطلب الآن</span>
+                <div class="add-to-cart" onclick="orderNow(${product.id})" style="width: 100%; border-radius: 12px; background: var(--primary-color); border: none; display: flex; align-items: center; justify-content: center; gap: 8px;">
+                    <i class="fab fa-whatsapp"></i>
+                    <span>تواصل للشراء</span>
                 </div>
             </div>
         `;

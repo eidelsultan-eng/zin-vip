@@ -173,17 +173,10 @@ body {
     align-items: center;
 }
 
-.hero-text p {
-    font-size: 1.1rem;
-    color: var(--gray-text);
-    margin-bottom: 30px;
-    max-width: 700px;
-}
-
 .hero-text h1 {
     font-size: 3.5rem;
-    line-height: 1.2;
-    margin-bottom: 20px;
+    line-height: 1.1;
+    margin-bottom: 15px;
     font-family: 'Outfit', sans-serif;
 }
 
@@ -194,19 +187,20 @@ body {
 
 .badge {
     display: inline-block;
-    padding: 5px 15px;
+    padding: 3px 12px;
     background: rgba(0, 182, 189, 0.1);
     color: var(--primary-color);
     border-radius: 50px;
     font-weight: 700;
-    margin-bottom: 15px;
+    margin-bottom: 8px;
     border: 1px solid rgba(0, 182, 189, 0.2);
+    font-size: 0.9rem;
 }
 
 .hero-text p {
     font-size: 1.1rem;
     color: var(--gray-text);
-    margin-bottom: 30px;
+    margin-bottom: 15px;
     max-width: 500px;
 }
 
@@ -390,7 +384,7 @@ body {
 /* Store */
 .section-title {
     text-align: center;
-    margin-bottom: 50px;
+    margin-bottom: 30px;
 }
 
 .section-title h2 {
@@ -585,10 +579,8 @@ body {
     box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
 }
 
-/* Specific Branding Colors */
 .contact-item .fa-phone-alt {
     background: #007bff;
-    /* Phone Blue */
     color: white;
 }
 
@@ -599,18 +591,11 @@ body {
 
 .contact-item .fa-wallet {
     background: #E60000;
-    /* Vodafone Red */
     color: white;
 }
 
 .contact-item .fa-university {
     background: #6f2da8;
-    /* InstaPay Purple-ish */
-    color: white;
-}
-
-.contact-item .fa-envelope {
-    background: var(--primary-color);
     color: white;
 }
 
@@ -881,8 +866,9 @@ body {
         text-align: center;
     }
 
-    .hero-text p {
-        margin: 0 auto 30px;
+    .hero {
+        padding-top: 120px;
+        padding-bottom: 50px;
     }
 
     .contact-box {
@@ -901,13 +887,87 @@ body {
         display: none;
     }
 
+    .logo h1 {
+        font-size: 18px;
+    }
+
+    .logo h1 span {
+        font-size: 14px;
+    }
+
+    .search-box {
+        width: 130px;
+    }
+
+    .search-box input {
+        width: 90px;
+    }
+
+    .hero {
+        padding-top: 100px;
+        padding-bottom: 40px;
+    }
+
     .hero-text h1 {
-        font-size: 2.2rem;
+        font-size: 2rem;
+        margin-bottom: 10px;
     }
 
     .products-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 15px;
+        grid-template-columns: 1fr !important;
+        gap: 12px;
+    }
+
+    .product-card {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        padding: 5px 12px;
+        border-radius: 12px;
+        min-height: 50px;
+        gap: 10px;
+    }
+
+    .card-badge {
+        position: static;
+        font-size: 10px;
+        padding: 2px 8px;
+        order: 1;
+        transform: none;
+        margin: 0;
+    }
+
+    .number-display {
+        padding: 0;
+        text-align: right;
+        flex-grow: 1;
+        order: 2;
+        margin: 0 10px;
+    }
+
+    .number-display h2 {
+        font-size: 1.1rem;
+        margin: 0;
+        letter-spacing: 0;
+    }
+
+    .card-info {
+        margin-top: 0;
+        padding-top: 0;
+        border-top: none;
+        width: auto;
+        order: 3;
+    }
+
+    .add-to-cart {
+        padding: 6px 12px;
+        font-size: 0.8rem;
+        width: auto !important;
+        height: auto;
+        min-width: 110px;
+        justify-content: center;
+        gap: 6px;
     }
 
     .steps-grid {
@@ -919,13 +979,41 @@ body {
         left: -100%;
     }
 }
- @ m e d i a   ( m a x - w i d t h :   4 8 0 p x )   { 
-         . h e r o - t e x t   h 1   {   f o n t - s i z e :   1 . 8 r e m ;   } 
-         . p r o d u c t s - g r i d   {   g r i d - t e m p l a t e - c o l u m n s :   r e p e a t ( 2 ,   1 f r ) ;   g a p :   1 0 p x ;   } 
-         . p r o d u c t - c a r d   {   p a d d i n g :   1 0 p x ;   b o r d e r - r a d i u s :   1 5 p x ;   } 
-         . n u m b e r - d i s p l a y   h 2   {   f o n t - s i z e :   0 . 9 r e m ;   } 
-         . n u m b e r - d i s p l a y   {   p a d d i n g :   1 5 p x   0 ;   } 
-         . s e a r c h - b o x   {   w i d t h :   1 4 0 p x ;   } 
-         . p i l l   {   p a d d i n g :   8 p x   1 5 p x ;   f o n t - s i z e :   0 . 8 r e m ;   } 
- }  
- 
+
+@media (max-width: 480px) {
+    .navbar {
+        height: 60px;
+    }
+
+    .logo h1 {
+        font-size: 14px;
+    }
+
+    .logo h1 span {
+        display: none;
+    }
+
+    .search-box {
+        width: 105px;
+        padding: 4px 8px;
+    }
+
+    .search-box input {
+        width: 65px;
+        font-size: 0.75rem;
+    }
+
+    .hero-text h1 {
+        font-size: 1.6rem;
+    }
+
+    .number-display h2 {
+        font-size: 0.95rem;
+    }
+
+    .add-to-cart {
+        min-width: 90px;
+        padding: 4px 8px;
+        font-size: 0.75rem;
+    }
+}
