@@ -1,16 +1,25 @@
 const products = [
-    { id: 1, number: '0100 0000 000', price: 50000, category: 'top-vip', type: 'VIP' },
-    { id: 2, number: '010 1111 1111', price: 25000, category: 'hexa', type: 'سداسي' },
-    { id: 3, number: '010 666 666 10', price: 4500, category: '2000to5000', type: 'مميز' },
-    { id: 4, number: '0100 100 1000', price: 15000, category: '0100100', type: 'زيرو مية مية' },
-    { id: 5, number: '010 123 456 78', price: 1500, category: 'under2000', type: 'تسلسل' },
-    { id: 6, number: '010 999 888 77', price: 8500, category: '5000to10000', type: 'تكرارات' },
-    { id: 7, number: '01000 1000 10', price: 12000, category: 'over10000', type: 'خماسية' },
-    { id: 8, number: '010 22 33 44 55', price: 3500, category: 'repeated', type: 'تكرارات' },
-    { id: 9, number: '010 0000 5555', price: 20000, category: 'quad', type: 'رباعي' },
-    { id: 10, number: '010 1212 1212', price: 7000, category: 'mirror', type: 'مرايا' },
-    { id: 11, number: '01000 000 000', price: 100000, category: 'top-vip', type: 'الملك' },
-    { id: 12, number: '01000 555 000', price: 1500, category: 'under2000', type: 'اقتصادي' },
+    { id: 101, number: '010.2003.1338', price: 0, category: 'birthdates', type: 'مميز' },
+    { id: 102, number: '010.2002.7274', price: 0, category: 'birthdates', type: 'مميز' },
+    { id: 103, number: '010.2003.4018', price: 0, category: 'birthdates', type: 'مميز' },
+    { id: 104, number: '010.2006.6070', price: 0, category: 'birthdates', type: 'مميز' },
+    { id: 105, number: '010.2007.0190', price: 0, category: 'birthdates', type: 'مميز' },
+    { id: 106, number: '010.2008.2060', price: 0, category: 'birthdates', type: 'مميز' },
+    { id: 107, number: '010.2009.7787', price: 0, category: 'birthdates', type: 'مميز' },
+    { id: 108, number: '010.2010.0446', price: 0, category: 'birthdates', type: 'مميز' },
+    { id: 109, number: '010.2013.0900', price: 0, category: 'birthdates', type: 'مميز' },
+    { id: 110, number: '010.2015.5004', price: 0, category: 'birthdates', type: 'مميز' },
+    { id: 111, number: '010.2018.0073', price: 0, category: 'birthdates', type: 'مميز' },
+    { id: 112, number: '010.2018.1007', price: 0, category: 'birthdates', type: 'مميز' },
+    { id: 113, number: '010.2019.0028', price: 0, category: 'birthdates', type: 'مميز' },
+    { id: 114, number: '010.2019.3700', price: 0, category: 'birthdates', type: 'مميز' },
+    { id: 115, number: '010.20.2009.13', price: 0, category: 'birthdates', type: 'مميز' },
+    { id: 116, number: '010.202.23006', price: 0, category: 'birthdates', type: 'مميز' },
+    { id: 117, number: '010.2024.4900', price: 0, category: 'birthdates', type: 'مميز' },
+    { id: 118, number: '010.2027.0034', price: 0, category: 'birthdates', type: 'مميز' },
+    { id: 119, number: '010.2027.2002', price: 0, category: 'birthdates', type: 'مميز' },
+    { id: 120, number: '010.2030.0194', price: 0, category: 'birthdates', type: 'مميز' },
+    { id: 121, number: '010.2029.0011', price: 0, category: 'birthdates', type: 'مميز' }
 ];
 
 let cart = [];
@@ -81,7 +90,6 @@ function updateCart() {
         cartItem.innerHTML = `
             <div class="cart-item-info">
                 <h4>${item.number}</h4>
-                <span>${item.price.toLocaleString()} ج.م</span>
             </div>
             <i class="fas fa-trash-alt" onclick="removeFromCart(${index})" style="cursor:pointer; color: var(--secondary-color)"></i>
         `;
@@ -130,7 +138,8 @@ renderProducts();
 const searchInput = document.querySelector('.search-box input');
 searchInput.addEventListener('input', (e) => {
     const query = e.target.value;
-    const filtered = products.filter(p => p.number.replace(/\s/g, '').includes(query.replace(/\s/g, '')));
+    const allAvailable = [...products, ...customProducts];
+    const filtered = allAvailable.filter(p => p.number.replace(/\s/g, '').replace(/\./g, '').includes(query.replace(/\s/g, '').replace(/\./g, '')));
 
     productsGrid.innerHTML = '';
     if (filtered.length === 0) {
@@ -144,18 +153,28 @@ searchInput.addEventListener('input', (e) => {
         card.innerHTML = `
             <div class="card-badge badge-gold">${product.type}</div>
             <div class="number-display">
-                <h2>${product.number}</h2>
+                <h2 dir="ltr">${product.number}</h2>
             </div>
             <div class="card-info">
-                <div class="price">${product.price.toLocaleString()} ج.م</div>
-                <div class="add-to-cart" onclick="addToCart(${product.id})">
-                    <i class="fas fa-plus"></i>
+                <div class="add-to-cart" onclick="orderNow(${product.id})" style="width: 100%; border-radius: 12px; background: var(--primary-color); border: none;">
+                    <span>اطلب الآن</span>
                 </div>
             </div>
         `;
         productsGrid.appendChild(card);
     });
 });
+
+// Direct Order via WhatsApp
+window.orderNow = (productId) => {
+    const allAvailable = [...products, ...customProducts];
+    const product = allAvailable.find(p => p.id === productId);
+    if (product) {
+        const message = `مرحباً زين للأرقام المميزة، أود طلب الرقم التالي:\n\n📌 رقم: ${product.number}`;
+        const whatsappUrl = `https://wa.me/201272202020?text=${encodeURIComponent(message)}`;
+        window.open(whatsappUrl, '_blank');
+    }
+};
 
 // Checkout via WhatsApp
 document.querySelector('.cart-footer button').addEventListener('click', () => {
@@ -166,9 +185,9 @@ document.querySelector('.cart-footer button').addEventListener('click', () => {
 
     let message = 'مرحباً زين للأرقام المميزة، أود الاستفسار عن الأرقام التالية:\n\n';
     cart.forEach(item => {
-        message += `📌 رقم: ${item.number}\n💰 السعر: ${item.price.toLocaleString()} ج.م\n\n`;
+        message += `📌 رقم: ${item.number}\n\n`;
     });
-    message += `━━━━━━━━━━━━━━\nTotal: ${cartTotalElement.innerText}`;
+    message += `━━━━━━━━━━━━━━`;
 
     const whatsappUrl = `https://wa.me/201272202020?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, '_blank');
@@ -227,7 +246,7 @@ function renderAdminList() {
         item.innerHTML = `
             <div style="display:flex; flex-direction:column; gap:2px;">
                 <span style="font-weight:bold; color:var(--primary-color)">${p.number}</span>
-                <span style="font-size:0.8rem; color:var(--gray-text)">${p.price} ج.م - ${p.type}</span>
+                <span style="font-size:0.8rem; color:var(--gray-text)">${p.type}</span>
             </div>
             <i class="fas fa-trash" onclick="deleteProduct(${index})" style="color: var(--secondary-color); cursor: pointer; padding: 10px;"></i>
         `;
@@ -249,7 +268,7 @@ addProductForm.addEventListener('submit', (e) => {
     const newProd = {
         id: Date.now(),
         number: document.getElementById('prodNumber').value,
-        price: parseInt(document.getElementById('prodPrice').value),
+        price: 0,
         category: document.getElementById('prodCategory').value,
         type: document.getElementById('prodType').value
     };
@@ -281,12 +300,11 @@ renderProducts = function (filter = 'all') {
         card.innerHTML = `
             <div class="card-badge badge-gold">${product.type}</div>
             <div class="number-display">
-                <h2>${product.number}</h2>
+                <h2 dir="ltr">${product.number}</h2>
             </div>
             <div class="card-info">
-                <div class="price">${product.price.toLocaleString()} ج.م</div>
-                <div class="add-to-cart" onclick="addToCart(${product.id})">
-                    <i class="fas fa-plus"></i>
+                <div class="add-to-cart" onclick="orderNow(${product.id})" style="width: 100%; border-radius: 12px; background: var(--primary-color); border: none;">
+                    <span>اطلب الآن</span>
                 </div>
             </div>
         `;

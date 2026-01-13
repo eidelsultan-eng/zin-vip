@@ -24,7 +24,7 @@
         <div class="container nav-content">
             <div class="logo">
                 <span class="zain-dot"></span>
-                <h1>زين<span> للأرقام</span></h1>
+                <h1>زين<span> للأرقام المميزة</span></h1>
             </div>
             <ul class="nav-links">
                 <li><a href="#home" class="active">الرئيسية</a></li>
@@ -52,24 +52,12 @@
     <header id="home" class="hero">
         <div class="container hero-grid">
             <div class="hero-text">
-                <span class="badge">عالم جميل - Zain</span>
-                <h1>تميز برقمك الخاص <br><span class="highlight">ارقام ملكية نادرة</span></h1>
+                <span class="badge">حسام الجعفراوي للأرقام المميزه</span>
+                <h1>تميزك يبدأ من رقمك <br><span class="highlight">نقدم لك مجموعه من الأرقام المميزه</span></h1>
                 <p>نقدم لك تشكيلة مختارة من أرقى وأجمل أرقام شركة زين. تميز بين أصدقائك وفي عملك برقم سهل الحفظ وقوي
                     الحضور.</p>
-                <div class="hero-btns">
-                    <a href="#store" class="btn btn-primary">تسوق الآن</a>
-                    <a href="#how" class="btn btn-secondary">اعرف أكثر</a>
-                </div>
-                <div class="stats">
-                    <div class="stat-item">
-                        <h3>+500</h3>
-                        <p>رقم مميز</p>
-                    </div>
-                    <div class="stat-item">
-                        <h3>+1000</h3>
-                        <p>عميل سعيد</p>
-                    </div>
-                </div>
+
+
             </div>
 
         </div>
@@ -78,6 +66,19 @@
             <div class="circle c2"></div>
         </div>
     </header>
+
+    <!-- Store Section -->
+    <section id="store" class="store-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>أحدث الأرقام المتاحة</h2>
+
+            </div>
+            <div class="products-grid" id="productsGrid">
+                <!-- Products will be injected by JS -->
+            </div>
+        </div>
+    </section>
 
     <!-- Filters Section -->
     <section class="filters-section">
@@ -108,19 +109,7 @@
                 <button class="pill" data-filter="code-only">ارقام من كود الشبكة فقط</button>
                 <button class="pill" data-filter="installments">ارقام مميزة بالتقسيط</button>
                 <button class="pill" data-filter="top-vip">Top Numbers VIP</button>
-            </div>
-        </div>
-    </section>
-
-    <!-- Store Section -->
-    <section id="store" class="store-section">
-        <div class="container">
-            <div class="section-title">
-                <h2>أحدث الأرقام المتاحة</h2>
-                <p>اختر الرقم الذي يناسب شخصيتك وميزانيتك</p>
-            </div>
-            <div class="products-grid" id="productsGrid">
-                <!-- Products will be injected by JS -->
+                <button class="pill" data-filter="birthdates">ارقام بتواريخ ميلاد مميزة</button>
             </div>
         </div>
     </section>
@@ -175,7 +164,7 @@
                     <a href="tel:01010200656" class="contact-item clickable">
                         <i class="fas fa-wallet"></i>
                         <div>
-                            <span>فودافون كاش</span>
+                            <span>كاش مميز</span>
                             <strong>01010200656</strong>
                         </div>
                     </a>
@@ -186,13 +175,7 @@
                             <strong>01010200656</strong>
                         </div>
                     </a>
-                    <div class="contact-item">
-                        <i class="fas fa-envelope"></i>
-                        <div>
-                            <span>البريد الإلكتروني</span>
-                            <strong>info@zain-vip.com</strong>
-                        </div>
-                    </div>
+
                 </div>
                 <form class="contact-form">
                     <input type="text" placeholder="الاسم الكامل" required>
@@ -207,8 +190,8 @@
     <footer class=" footer">
         <div class="container footer-content">
             <div class="footer-logo">
-                <h1>زين<span> للأرقام</span></h1>
-                <p>الوجهة الأولى للأرقام المميزة في المنطقة.</p>
+                <h1>زين<span> للأرقام المميزة</span></h1>
+                <p>الوجهة الأولى للأرقام المميزة</p>
             </div>
             <div class="footer-links">
                 <h4>روابط سريعة</h4>
@@ -222,6 +205,8 @@
             <div class="social-links">
                 <a href="https://www.facebook.com/share/175RiNwiHE/" target="_blank" class="facebook"><i
                         class="fab fa-facebook-f"></i></a>
+                <a href="https://www.tiktok.com/@user9511818614825?_r=1&_t=ZS-9330E3oqbS5" target="_blank"
+                    class="tiktok"><i class="fab fa-tiktok"></i></a>
                 <a href="https://wa.me/201272202020" target="_blank" class="whatsapp"><i
                         class="fab fa-whatsapp"></i></a>
             </div>
@@ -250,7 +235,7 @@
                 <p><i class="fas fa-phone-alt" style="color: var(--primary-color)"></i> الرقم:
                     01010200656</p>
             </div>
-            <div class="total">
+            <div class="total" style="display: none;">
                 <span>الإجمالي:</span>
                 <span id="cartTotal">0 ج.م</span>
             </div>
@@ -270,11 +255,7 @@
                     <input type="text" id="prodNumber" placeholder="مثال: 010 123 456 78" required
                         style="width: 100%; padding: 12px; border-radius: 10px; background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border); color: white;">
                 </div>
-                <div class="form-group" style="margin-bottom: 20px;">
-                    <label style="display: block; margin-bottom: 8px;">السعر (ج.م)</label>
-                    <input type="number" id="prodPrice" placeholder="مثال: 5000" required
-                        style="width: 100%; padding: 12px; border-radius: 10px; background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border); color: white;">
-                </div>
+
                 <div class="form-group" style="margin-bottom: 20px;">
                     <label style="display: block; margin-bottom: 8px;">التصنيف</label>
                     <select id="prodCategory" required
@@ -300,6 +281,7 @@
                         <option value="code-only">ارقام من كود الشبكة فقط</option>
                         <option value="installments">ارقام مميزة بالتقسيط</option>
                         <option value="top-vip">Top Numbers VIP</option>
+                        <option value="birthdates">ارقام بتواريخ ميلاد مميزة</option>
                     </select>
                 </div>
                 <div class="form-group" style="margin-bottom: 20px;">

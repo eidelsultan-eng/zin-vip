@@ -404,14 +404,14 @@ body {
 
 .products-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 30px;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 20px;
 }
 
 .product-card {
     background: var(--dark-card);
-    border-radius: 25px;
-    padding: 20px;
+    border-radius: 20px;
+    padding: 15px;
     border: 1px solid var(--glass-border);
     transition: var(--transition);
     position: relative;
@@ -451,14 +451,14 @@ body {
 }
 
 .number-display {
-    padding: 40px 0;
+    padding: 25px 0;
     text-align: center;
 }
 
 .number-display h2 {
-    font-size: 1.8rem;
+    font-size: 1.2rem;
     font-family: 'Outfit', sans-serif;
-    letter-spacing: 2px;
+    letter-spacing: 1px;
     color: var(--light-text);
 }
 
@@ -466,8 +466,8 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: 20px;
-    padding-top: 20px;
+    margin-top: 10px;
+    padding-top: 15px;
     border-top: 1px solid var(--glass-border);
 }
 
@@ -718,6 +718,11 @@ body {
     box-shadow: 0 5px 15px rgba(24, 119, 242, 0.4);
 }
 
+.social-links a.tiktok:hover {
+    background: #000000;
+    box-shadow: 0 5px 15px rgba(255, 255, 255, 0.2);
+}
+
 .social-links a.whatsapp:hover {
     background: #25D366;
     box-shadow: 0 5px 15px rgba(37, 211, 102, 0.4);
@@ -867,6 +872,10 @@ body {
 
 /* Responsive */
 @media (max-width: 992px) {
+    .container {
+        padding: 0 20px;
+    }
+
     .hero-grid {
         grid-template-columns: 1fr;
         text-align: center;
@@ -874,14 +883,6 @@ body {
 
     .hero-text p {
         margin: 0 auto 30px;
-    }
-
-    .hero-btns {
-        justify-content: center;
-    }
-
-    .stats {
-        justify-content: center;
     }
 
     .contact-box {
@@ -901,7 +902,12 @@ body {
     }
 
     .hero-text h1 {
-        font-size: 2.5rem;
+        font-size: 2.2rem;
+    }
+
+    .products-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
     }
 
     .steps-grid {
@@ -913,3 +919,13 @@ body {
         left: -100%;
     }
 }
+ @ m e d i a   ( m a x - w i d t h :   4 8 0 p x )   { 
+         . h e r o - t e x t   h 1   {   f o n t - s i z e :   1 . 8 r e m ;   } 
+         . p r o d u c t s - g r i d   {   g r i d - t e m p l a t e - c o l u m n s :   r e p e a t ( 2 ,   1 f r ) ;   g a p :   1 0 p x ;   } 
+         . p r o d u c t - c a r d   {   p a d d i n g :   1 0 p x ;   b o r d e r - r a d i u s :   1 5 p x ;   } 
+         . n u m b e r - d i s p l a y   h 2   {   f o n t - s i z e :   0 . 9 r e m ;   } 
+         . n u m b e r - d i s p l a y   {   p a d d i n g :   1 5 p x   0 ;   } 
+         . s e a r c h - b o x   {   w i d t h :   1 4 0 p x ;   } 
+         . p i l l   {   p a d d i n g :   8 p x   1 5 p x ;   f o n t - s i z e :   0 . 8 r e m ;   } 
+ }  
+ 
