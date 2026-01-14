@@ -2,6 +2,23 @@ const products = [];
 
 let cart = [];
 
+// --- Firebase Configuration ---
+// قم باستبدال هذه البيانات ببيانات مشروعك الخاصة في Firebase
+const firebaseConfig = {
+    apiKey: "YOUR_API_KEY",
+    authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
+    databaseURL: "https://YOUR_PROJECT_ID-default-rtdb.firebaseio.com",
+    projectId: "YOUR_PROJECT_ID",
+    storageBucket: "YOUR_PROJECT_ID.appspot.com",
+    messagingSenderId: "YOUR_SENDER_ID",
+    appId: "YOUR_APP_ID"
+};
+
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+const db = firebase.database();
+const productsRef = db.ref('customProducts');
+
 const productsGrid = document.getElementById('productsGrid');
 const cartSidebar = document.getElementById('cartSidebar');
 const cartToggle = document.getElementById('cartToggle');
@@ -212,11 +229,32 @@ adminClose.addEventListener('click', () => {
     overlay.classList.remove('active');
 });
 
-// Load custom products from localStorage
-let customProducts = JSON.parse(localStorage.getItem('customZainProducts')) || [];
+// Load custom products from Firebase (Online)
+let customProducts = [];
 
-function saveProducts() {
-    localStorage.setItem('customZainProducts', JSON.stringify(customProducts));
+// Listen for real-time changes
+productsRef.on('value', (snapshot) => {
+    const data = snapshot.val();
+    customProducts = [];
+    if (data) {
+        // Convert object to array and keep the Firebase key for deletion
+        Object.keys(data).forEach(key => {
+            customProducts.push({
+                firebaseKey: key,
+                ...data[key]
+            });
+        });
+    }
+    // Re-render everything once data is received
+    renderProducts(currentFilter, true);
+    if (adminPanel.classList.contains('active')) {
+        renderAdminList();
+    }
+});
+
+function saveProducts(newProd) {
+    // Push new product to Firebase
+    productsRef.push(newProd);
 }
 
 function renderAdminList() {
@@ -229,18 +267,16 @@ function renderAdminList() {
                 <span style="font-weight:bold; color:var(--primary-color)">${p.number}</span>
                 <span style="font-size:0.8rem; color:var(--gray-text)">${p.type}${p.details ? ` | ${p.details}` : ''}</span>
             </div>
-            <i class="fas fa-trash" onclick="deleteProduct(${index})" style="color: var(--secondary-color); cursor: pointer; padding: 10px;"></i>
+            <i class="fas fa-trash" onclick="deleteProduct('${p.firebaseKey}')" style="color: var(--secondary-color); cursor: pointer; padding: 10px;"></i>
         `;
         addedProdsList.appendChild(item);
     });
 }
 
-window.deleteProduct = (index) => {
+window.deleteProduct = (firebaseKey) => {
     if (confirm('هل أنت متأكد من حذف هذا الرقم؟')) {
-        customProducts.splice(index, 1);
-        saveProducts();
-        renderAdminList();
-        renderProducts(document.querySelector('.pill.active').dataset.filter);
+        productsRef.child(firebaseKey).remove();
+        alert('تم حذف الرقم بنجاح');
     }
 };
 
@@ -255,12 +291,9 @@ addProductForm.addEventListener('submit', (e) => {
         details: document.getElementById('prodDetails').value || ''
     };
 
-    customProducts.push(newProd);
-    saveProducts();
+    saveProducts(newProd);
     addProductForm.reset();
-    renderAdminList();
-    renderProducts(document.querySelector('.pill.active').dataset.filter);
-    alert('تم إضافة الرقم بنجاح!');
+    alert('تم إضافة الرقم بنجاح للموقع وتظهر الآن للكل الحاضرين أونلاين!');
 });
 
 // Update renderProducts to include custom products and persistence
