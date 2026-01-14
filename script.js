@@ -147,7 +147,7 @@ searchInput.addEventListener('input', (e) => {
         card.className = 'product-card';
         card.innerHTML = `
             <div class="card-badge badge-gold">${product.type}</div>
-            <div class="number-display">
+            <div class="number-display" onclick="window.location.href='details.html?id=${product.id}'" style="cursor: pointer;">
                 <h2 dir="ltr">${product.number}</h2>
                 ${product.details ? `<p class="number-details">${product.details}</p>` : ''}
             </div>
@@ -161,6 +161,8 @@ searchInput.addEventListener('input', (e) => {
         productsGrid.appendChild(card);
     });
 });
+
+
 
 // Direct Order via WhatsApp
 window.orderNow = (productId) => {
@@ -264,7 +266,7 @@ function renderAdminList() {
         item.innerHTML = `
             <div style="display:flex; flex-direction:column; gap:2px;">
                 <span style="font-weight:bold; color:var(--primary-color)">${p.number}</span>
-                <span style="font-size:0.8rem; color:var(--gray-text)">${p.type}${p.details ? ` | ${p.details}` : ''}</span>
+                <span style="font-size:0.8rem; color:var(--gray-text)">${p.type}${p.details ? ` | ${p.details}` : ''}${p.otherDetails ? ` | ${p.otherDetails}` : ''}</span>
             </div>
             <i class="fas fa-trash" onclick="deleteProduct('${p.firebaseKey}')" style="color: var(--secondary-color); cursor: pointer; padding: 10px;"></i>
         `;
@@ -287,7 +289,8 @@ addProductForm.addEventListener('submit', (e) => {
         price: 0,
         category: document.getElementById('prodCategory').value,
         type: document.getElementById('prodType').value,
-        details: document.getElementById('prodDetails').value || ''
+        details: document.getElementById('prodDetails').value || '',
+        otherDetails: document.getElementById('prodOtherDetails').value || ''
     };
 
     saveProducts(newProd);
@@ -334,7 +337,7 @@ renderProducts = function (filter = 'all', showAll = false) {
         card.className = 'product-card';
         card.innerHTML = `
             <div class="card-badge badge-gold">${product.type}</div>
-            <div class="number-display">
+            <div class="number-display" onclick="window.location.href='details.html?id=${product.id}'" style="cursor: pointer;">
                 <h2 dir="ltr">${product.number}</h2>
                 ${product.details ? `<p class="number-details">${product.details}</p>` : ''}
             </div>

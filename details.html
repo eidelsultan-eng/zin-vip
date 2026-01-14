@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تفاصيل الرقم | زين للأرقام المميزة</title>
+    <!-- Google Fonts: Cairo and Outfit -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=Outfit:wght@400;600;800&display=swap"
+        rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .details-page {
+            padding-top: 120px;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .details-container {
+            width: 100%;
+            max-width: 600px;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .details-number {
+            font-size: 3rem;
+            font-family: 'Outfit', sans-serif;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+            text-shadow: 0 0 20px rgba(0, 182, 189, 0.3);
+        }
+
+        .details-type {
+            font-size: 1.2rem;
+            color: var(--gold);
+            margin-bottom: 30px;
+            font-weight: 700;
+        }
+
+        .details-content {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 40px;
+            text-align: right;
+            line-height: 1.8;
+            font-size: 1.1rem;
+            white-space: pre-wrap;
+        }
+
+        .back-btn {
+            margin-top: 20px;
+            display: inline-block;
+            color: var(--gray-text);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .back-btn:hover {
+            color: var(--primary-color);
+        }
+
+        #loading {
+            font-size: 1.5rem;
+            color: var(--gray-text);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container nav-content">
+            <div class="logo">
+                <span class="zain-dot"></span>
+                <h1><a href="index.html" style="text-decoration: none; color: inherit;">زين<span> للأرقام
+                            المميزة</span></a></h1>
+            </div>
+            <a href="index.html" class="btn btn-secondary">
+                <i class="fas fa-arrow-right"></i>
+                العودة للرئيسية
+            </a>
+        </div>
+    </nav>
+
+    <div class="details-page">
+        <div class="container details-container glass-card" id="detailsWrapper">
+            <div id="loading">جاري تحميل التفاصيل...</div>
+        </div>
+    </div>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-database-compat.js"></script>
+
+    <script>
+        // --- Firebase Configuration ---
+        const firebaseConfig = {
+            apiKey: "AIzaSyDjihc5elZenDCAyG3VTeMWN6cuOifd64M",
+            authDomain: "vodafone-8b378.firebaseapp.com",
+            databaseURL: "https://vodafone-8b378-default-rtdb.firebaseio.com",
+            projectId: "vodafone-8b378",
+            storageBucket: "vodafone-8b378.firebasestorage.app",
+            messagingSenderId: "37799649066",
+            appId: "1:37799649066:web:0405ed9987913f903f4853"
+        };
+
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.database();
+        const productsRef = db.ref('customProducts');
+
+        const wrapper = document.getElementById('detailsWrapper');
+
+        // Get ID from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const productId = urlParams.get('id');
+
+        if (!productId) {
+            wrapper.innerHTML = `<h2>خطأ: لم يتم تحديد الرقم</h2><a href="index.html" class="back-btn">العودة للرئيسية</a>`;
+        } else {
+            // Fetch this specific product
+            productsRef.once('value', (snapshot) => {
+                const data = snapshot.val();
+                let product = null;
+
+                if (data) {
+                    Object.keys(data).forEach(key => {
+                        if (data[key].id.toString() === productId) {
+                            product = data[key];
+                        }
+                    });
+                }
+
+                if (product) {
+                    wrapper.innerHTML = `
+                        <div class="details-type">${product.type}</div>
+                        <h2 class="details-number" dir="ltr">${product.number}</h2>
+                        <div class="details-content">
+                            <h4 style="margin-bottom: 10px; color: var(--primary-color);">تفاصيل إضافية:</h4>
+                            <p>${product.otherDetails || 'لا توجد تفاصيل إضافية متاحة حالياً لهذا الرقم.'}</p>
+                        </div>
+                        <div style="display: flex; flex-direction: column; gap: 15px;">
+                            <button onclick="orderViaWA('${product.number}')" class="btn btn-primary btn-block" style="width: 100%; justify-content: center; font-size: 1.2rem; padding: 15px;">
+                                <i class="fab fa-whatsapp"></i>
+                                اطلب الآن عبر واتساب
+                            </button>
+                            <a href="index.html" class="back-btn">
+                                <i class="fas fa-chevron-left" style="font-size: 0.8rem;"></i>
+                                العودة لتصفح باقي الأرقام
+                            </a>
+                        </div>
+                    `;
+                } else {
+                    wrapper.innerHTML = `<h2>عذراً، هذا الرقم غير موجود أو تم حذفه.</h2><a href="index.html" class="back-btn">العودة للرئيسية</a>`;
+                }
+            });
+        }
+
+        window.orderViaWA = (number) => {
+            const message = `مرحباً زين للأرقام المميزة، أود طلب الرقم التالي:\n\n📌 رقم: ${number}`;
+            const whatsappUrl = `https://wa.me/201272202020?text=${encodeURIComponent(message)}`;
+            window.open(whatsappUrl, '_blank');
+        };
+    </script>
+</body>
+
+</html>
