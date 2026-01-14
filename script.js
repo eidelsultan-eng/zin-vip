@@ -3,15 +3,14 @@ const products = [];
 let cart = [];
 
 // --- Firebase Configuration ---
-// قم باستبدال هذه البيانات ببيانات مشروعك الخاصة في Firebase
 const firebaseConfig = {
-    apiKey: "YOUR_API_KEY",
-    authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-    databaseURL: "https://YOUR_PROJECT_ID-default-rtdb.firebaseio.com",
-    projectId: "YOUR_PROJECT_ID",
-    storageBucket: "YOUR_PROJECT_ID.appspot.com",
-    messagingSenderId: "YOUR_SENDER_ID",
-    appId: "YOUR_APP_ID"
+    apiKey: "AIzaSyDjihc5elZenDCAyG3VTeMWN6cuOifd64M",
+    authDomain: "vodafone-8b378.firebaseapp.com",
+    databaseURL: "https://vodafone-8b378-default-rtdb.firebaseio.com",
+    projectId: "vodafone-8b378",
+    storageBucket: "vodafone-8b378.firebasestorage.app",
+    messagingSenderId: "37799649066",
+    appId: "1:37799649066:web:0405ed9987913f903f4853"
 };
 
 // Initialize Firebase
