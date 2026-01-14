@@ -1,26 +1,4 @@
-const products = [
-    { id: 101, number: '010.2003.1338', price: 0, category: 'birthdates', type: 'مميز' },
-    { id: 102, number: '010.2002.7274', price: 0, category: 'birthdates', type: 'مميز' },
-    { id: 103, number: '010.2003.4018', price: 0, category: 'birthdates', type: 'مميز' },
-    { id: 104, number: '010.2006.6070', price: 0, category: 'birthdates', type: 'مميز' },
-    { id: 105, number: '010.2007.0190', price: 0, category: 'birthdates', type: 'مميز' },
-    { id: 106, number: '010.2008.2060', price: 0, category: 'birthdates', type: 'مميز' },
-    { id: 107, number: '010.2009.7787', price: 0, category: 'birthdates', type: 'مميز' },
-    { id: 108, number: '010.2010.0446', price: 0, category: 'birthdates', type: 'مميز' },
-    { id: 109, number: '010.2013.0900', price: 0, category: 'birthdates', type: 'مميز' },
-    { id: 110, number: '010.2015.5004', price: 0, category: 'birthdates', type: 'مميز' },
-    { id: 111, number: '010.2018.0073', price: 0, category: 'birthdates', type: 'مميز' },
-    { id: 112, number: '010.2018.1007', price: 0, category: 'birthdates', type: 'مميز' },
-    { id: 113, number: '010.2019.0028', price: 0, category: 'birthdates', type: 'مميز' },
-    { id: 114, number: '010.2019.3700', price: 0, category: 'birthdates', type: 'مميز' },
-    { id: 115, number: '010.20.2009.13', price: 0, category: 'birthdates', type: 'مميز' },
-    { id: 116, number: '010.202.23006', price: 0, category: 'birthdates', type: 'مميز' },
-    { id: 117, number: '010.2024.4900', price: 0, category: 'birthdates', type: 'مميز' },
-    { id: 118, number: '010.2027.0034', price: 0, category: 'birthdates', type: 'مميز' },
-    { id: 119, number: '010.2027.2002', price: 0, category: 'birthdates', type: 'مميز' },
-    { id: 120, number: '010.2030.0194', price: 0, category: 'birthdates', type: 'مميز' },
-    { id: 121, number: '010.2029.0011', price: 0, category: 'birthdates', type: 'مميز' }
-];
+const products = [];
 
 let cart = [];
 
@@ -56,6 +34,7 @@ function renderProducts(filter = 'all') {
             <div class="card-badge badge-gold">${product.type}</div>
             <div class="number-display">
                 <h2>${product.number}</h2>
+                ${product.details ? `<p class="number-details">${product.details}</p>` : ''}
             </div>
             <div class="card-info">
                 <div class="price">${product.price.toLocaleString()} ج.م</div>
@@ -154,6 +133,7 @@ searchInput.addEventListener('input', (e) => {
             <div class="card-badge badge-gold">${product.type}</div>
             <div class="number-display">
                 <h2 dir="ltr">${product.number}</h2>
+                ${product.details ? `<p class="number-details">${product.details}</p>` : ''}
             </div>
             <div class="card-info">
                 <div class="add-to-cart" onclick="orderNow(${product.id})" style="width: 100%; border-radius: 12px; background: var(--primary-color); border: none; display: flex; align-items: center; justify-content: center; gap: 8px;">
@@ -247,7 +227,7 @@ function renderAdminList() {
         item.innerHTML = `
             <div style="display:flex; flex-direction:column; gap:2px;">
                 <span style="font-weight:bold; color:var(--primary-color)">${p.number}</span>
-                <span style="font-size:0.8rem; color:var(--gray-text)">${p.type}</span>
+                <span style="font-size:0.8rem; color:var(--gray-text)">${p.type}${p.details ? ` | ${p.details}` : ''}</span>
             </div>
             <i class="fas fa-trash" onclick="deleteProduct(${index})" style="color: var(--secondary-color); cursor: pointer; padding: 10px;"></i>
         `;
@@ -271,7 +251,8 @@ addProductForm.addEventListener('submit', (e) => {
         number: document.getElementById('prodNumber').value,
         price: 0,
         category: document.getElementById('prodCategory').value,
-        type: document.getElementById('prodType').value
+        type: document.getElementById('prodType').value,
+        details: document.getElementById('prodDetails').value || ''
     };
 
     customProducts.push(newProd);
@@ -323,6 +304,7 @@ renderProducts = function (filter = 'all', showAll = false) {
             <div class="card-badge badge-gold">${product.type}</div>
             <div class="number-display">
                 <h2 dir="ltr">${product.number}</h2>
+                ${product.details ? `<p class="number-details">${product.details}</p>` : ''}
             </div>
             <div class="card-info">
                 <div class="add-to-cart" onclick="orderNow(${product.id})" style="width: 100%; border-radius: 12px; background: var(--primary-color); border: none; display: flex; align-items: center; justify-content: center; gap: 8px;">
