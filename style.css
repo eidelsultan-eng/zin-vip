@@ -1042,115 +1042,123 @@ body {
     }
 }
 
-.mobile-menu-btn {
-    display: block;
-    cursor: pointer;
-}
+@media (max-width: 768px) {
+    .mobile-menu-btn {
+        display: block;
+        cursor: pointer;
+    }
 
-.logo h1 {
-    font-size: 22px;
-    white-space: nowrap;
-}
+    .logo h1 {
+        font-size: 22px;
+        white-space: nowrap;
+    }
 
-.logo h1 span {
-    font-size: 18px;
-}
+    .logo h1 span {
+        font-size: 18px;
+    }
 
-.search-box {
-    width: 100px;
-}
+    .search-box {
+        width: 100px;
+    }
 
-.search-box input {
-    width: 65px;
-}
+    .search-box input {
+        width: 65px;
+    }
 
-.hero {
-    padding-top: 60px;
-    padding-bottom: 10px;
-}
+    .hero {
+        padding-top: 60px;
+        padding-bottom: 10px;
+    }
 
-section {
-    padding: 40px 0;
-}
+    section {
+        padding: 40px 0;
+    }
 
-.hero-text h1 {
-    font-size: 1.8rem;
-    margin-bottom: 5px;
-}
+    .hero-text h1 {
+        font-size: 1.8rem;
+        margin-bottom: 5px;
+    }
 
-.badge {
-    margin-bottom: 5px;
-}
+    .badge {
+        margin-bottom: 5px;
+    }
 
-.hero-text p {
-    margin-bottom: 10px;
-}
+    .hero-text p {
+        margin-bottom: 10px;
+    }
 
-.products-grid {
-    grid-template-columns: 1fr !important;
-    gap: 12px;
-}
+    .products-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 15px;
+    }
 
-.product-card {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    padding: 12px 18px;
-    border-radius: 15px;
-    min-height: 70px;
-    gap: 12px;
-}
+    .product-card {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 20px 12px;
+        border-radius: 18px;
+        min-height: auto;
+        gap: 12px;
+        height: 100%;
+    }
 
-.card-badge {
-    position: static;
-    font-size: 10px;
-    padding: 2px 8px;
-    order: 1;
-    transform: none;
-    margin: 0;
-}
+    .card-badge {
+        position: relative;
+        font-size: 10px;
+        padding: 5px 12px;
+        margin-bottom: 8px;
+        width: auto;
+        display: inline-block;
+        background: var(--gold);
+        color: #000;
+        border-radius: 5px;
+    }
 
-.number-display {
-    padding: 0;
-    text-align: right;
-    flex-grow: 1;
-    order: 2;
-    margin: 0 10px;
-}
+    .number-display {
+        padding: 5px 0;
+        text-align: center;
+        width: 100%;
+        margin: 0;
+    }
 
-.number-display h2 {
-    font-size: 1.3rem;
-    margin: 0;
-    letter-spacing: 0.5px;
-}
+    .number-display h2 {
+        font-size: 1.3rem;
+        margin: 0;
+        word-break: break-all;
+        color: var(--light-text);
+        letter-spacing: 0.5px;
+    }
 
-.card-info {
-    margin-top: 0;
-    padding-top: 0;
-    border-top: none;
-    width: auto;
-    order: 3;
-}
+    .card-info {
+        margin-top: auto;
+        padding-top: 15px;
+        border-top: 1px solid var(--glass-border);
+        width: 100%;
+    }
 
-.add-to-cart {
-    padding: 6px 12px;
-    font-size: 0.8rem;
-    width: auto !important;
-    height: auto;
-    min-width: 110px;
-    justify-content: center;
-    gap: 6px;
-}
+    .add-to-cart {
+        width: 100% !important;
+        padding: 12px;
+        font-size: 1rem;
+        border-radius: 12px;
+        background: var(--primary-color);
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 5px;
+    }
 
-.steps-grid {
-    grid-template-columns: 1fr;
-}
+    .steps-grid {
+        grid-template-columns: 1fr;
+    }
 
-.cart-sidebar {
-    width: 100%;
-    left: -100%;
-}
+    .cart-sidebar {
+        width: 100%;
+        left: -100%;
+    }
 }
 
 @media (max-width: 480px) {
@@ -1158,105 +1166,76 @@ section {
         height: 60px;
     }
 
+    .nav-content {
+        padding: 0 10px;
+        gap: 5px;
+    }
+
+    .logo {
+        flex: 1;
+        min-width: 0;
+    }
+
     .logo h1 {
-        font-size: 28px;
+        font-size: 0.95rem;
         white-space: nowrap;
+        overflow: visible;
     }
 
     .logo h1 span {
-        display: inline;
-        font-size: 22px;
+        font-size: 0.7rem;
+    }
+
+    .mobile-menu-btn {
+        margin-left: 0;
+        font-size: 20px;
     }
 
     .nav-actions {
-        gap: 15px;
-    }
-
-    .cart-icon {
-        margin-right: 5px;
-        /* Push it left */
-    }
-
-    .container {
-        padding: 0 12px;
+        gap: 5px;
     }
 
     .search-box {
-        width: 105px;
-        padding: 4px 8px;
-    }
-
-    .section-title h2 {
-        font-size: 1.8rem;
+        width: 90px;
+        padding: 3px 6px;
     }
 
     .search-box input {
-        width: 80px;
-        font-size: 0.8rem;
+        width: 65px;
+        font-size: 0.75rem;
     }
 
-    .hero-text h1 {
-        font-size: 1.4rem;
-        margin-bottom: 5px;
+    .cart-icon {
+        font-size: 16px;
     }
 
     .hero {
-        padding-top: 100px;
+        padding-top: 130px;
         padding-bottom: 20px;
     }
 
-    .badge {
-        margin-bottom: 20px;
-    }
-
-    .badge .name {
-        font-size: 1.8rem;
-    }
-
-    .badge .subtext {
-        font-size: 0.9rem;
-    }
-
-    .section-title {
-        margin-bottom: 8px;
-    }
-
-    .section-title h2 {
-        font-size: 1.5rem;
-    }
-
     .products-grid {
-        grid-template-columns: 1fr !important;
-    }
-
-    .number-display h2 {
-        font-size: 1.4rem;
-    }
-
-    .add-to-cart {
-        min-width: 110px;
-        padding: 8px 12px;
-        font-size: 0.85rem;
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 10px;
     }
 
     .product-card {
-        padding: 25px 20px;
-        min-height: 150px;
-        border-radius: 25px;
+        padding: 15px 10px;
+        border-radius: 12px;
+        display: flex;
         flex-direction: column;
-        /* Switching to column to make it feel 'big' like two cells */
-        justify-content: center;
-        gap: 15px;
+        align-items: center;
+        text-align: center;
     }
 
     .number-display h2 {
-        font-size: 1.8rem;
+        font-size: 1rem;
     }
 
     .add-to-cart {
-        min-width: 100%;
-        padding: 12px;
-        font-size: 1rem;
+        padding: 8px;
+        font-size: 0.8rem;
+        border-radius: 8px;
     }
 }
 
