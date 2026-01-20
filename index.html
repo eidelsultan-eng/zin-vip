@@ -41,10 +41,10 @@
             <div class="nav-bottom">
                 <ul class="nav-links">
                     <li><a href="#home" class="active">الرئيسية</a></li>
-                    <li><a href="#store">المتجر</a></li>
-                    <li><a href="#how">كيفية الطلب</a></li>
-                    <li><a href="#reviews">آراء عملائنا</a></li>
-                    <li><a href="#contact">تواصل معنا</a></li>
+                    <li><a href="#store" data-nav-filter="today-offer">عرض اليوم</a></li>
+                    <li><a href="#sell">بيع رقمك</a></li>
+                    <li><a href="#store" data-nav-filter="we-offer">باقات WE بخـصم 50%</a></li>
+                    <li><a href="#reviews">آراء العملاء</a></li>
                 </ul>
                 <div class="mobile-menu-btn">
                     <i class="fas fa-bars"></i>
@@ -60,9 +60,10 @@
         </div>
         <div class="side-menu-content">
             <a href="#home" class="side-link">الرئيسية</a>
-            <a href="#store" class="side-link">المتجر</a>
-            <a href="#how" class="side-link">كيفية الطلب</a>
-            <a href="#reviews" class="side-link">آراء عملائنا</a>
+            <a href="#store" class="side-link" data-nav-filter="today-offer">عرض اليوم</a>
+            <a href="#sell" class="side-link">بيع رقمك</a>
+            <a href="#store" class="side-link" data-nav-filter="we-offer">باقات WE بخـصم 50%</a>
+            <a href="#reviews" class="side-link">آراء العملاء</a>
             <a href="#contact" class="side-link">تواصل معنا</a>
             <div class="admin-access-wrapper"
                 style="margin-top: 50px; border-top: 1px solid var(--glass-border); padding-top: 20px;">
@@ -224,6 +225,56 @@
             </div>
     </section>
 
+    <!-- Sell Section -->
+    <section id="sell" class="sell-section">
+        <div class="container">
+            <div class="sell-box glass-card">
+                <div class="section-title">
+                    <h2 style="font-size: 2.5rem; margin-bottom: 15px;">بيع رقمك</h2>
+                    <p style="font-size: 1.1rem; color: var(--light-text);">لو عندك رقم مُميز وعندك النية تبيعه، ابعتلنا
+                        التفاصيل وهنتواصل معاك لو الرقم والسعر مُناسب.</p>
+                </div>
+
+                <div class="important-note">
+                    <h3 style="color: #ff4d4d; margin-bottom: 10px;">ملاحظة مُهمة جدًا:</h3>
+                    <p>إحنا بنشتري الأرقام مُباشرة، ومش بنعرض أي رقم للبيع على الموقع غير لما نشتريه فعليًا. علشان كده
+                        لازم تكتب السعر اللي شايفه مناسب لرقمه، لأننا مش بنقيم أرقام نهائي، وأي طلب مفيش سعر واضح مش
+                        هيتم مُراجعته.</p>
+                </div>
+
+                <form class="sell-form">
+                    <div class="form-group">
+                        <label>الاسم:</label>
+                        <input type="text" name="name" required placeholder="ادخل اسمك بالكامل">
+                    </div>
+                    <div class="form-group">
+                        <label>رقم موبايل التواصل:</label>
+                        <input type="tel" name="phone" required placeholder="رقم متاح عليه واتساب">
+                    </div>
+                    <div class="form-group">
+                        <label>مكان حضرتك فين؟</label>
+                        <input type="text" name="location" required placeholder="المحافظة أو العنوان">
+                    </div>
+                    <div class="form-group">
+                        <label>الرقم اللي عايز تبيعه:</label>
+                        <input type="text" name="sell_number" required placeholder="اكتب الرقم هنا">
+                    </div>
+                    <div class="form-group">
+                        <label>السعر اللي حضرتك طالبه كام؟</label>
+                        <input type="text" name="asking_price" required placeholder="اكتب السعر النهائي">
+                    </div>
+                    <div class="form-group">
+                        <label>لو فيه ملاحظات:</label>
+                        <textarea name="notes" placeholder="أي تفاصيل أخرى حابب توضحها..."></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">
+                        <i class="fas fa-paper-plane" style="margin-left: 10px;"></i> إرسال الطلب
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
     <!-- Contact Section -->
     <section id="contact" class="contact-section">
         <div class="container">
@@ -345,10 +396,16 @@
                         style="width: 100%; padding: 12px; border-radius: 10px; background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border); color: white;">
                 </div>
 
+                <div class="form-group" style="margin-bottom: 20px; display: flex; align-items: center; gap: 10px;">
+                    <input type="checkbox" id="prodTodayOffer" style="width: 20px; height: 20px; cursor: pointer;">
+                    <label for="prodTodayOffer" style="cursor: pointer;">تمييز كـ "عرض اليوم"</label>
+                </div>
                 <div class="form-group" style="margin-bottom: 20px;">
                     <label style="display: block; margin-bottom: 8px;">التصنيف</label>
                     <select id="prodCategory" required
                         style="width: 100%; padding: 12px; border-radius: 10px; background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border); color: white;">
+                        <option value="today-offer">عرض اليوم</option>
+                        <option value="we-offer">باقات WE بخـصم 50%</option>
                         <option value="vodafone-010">أرقام فودافون 010</option>
                         <option value="etisalat-011">ارقام اتصالات 011</option>
                         <option value="orange-012">ارقام اورنج 012</option>

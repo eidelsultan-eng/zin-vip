@@ -178,6 +178,24 @@ adminClose.addEventListener('click', () => {
 });
 
 // Restore Logic
+const navFilterLinks = document.querySelectorAll('[data-nav-filter]');
+navFilterLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+        const filter = link.getAttribute('data-nav-filter');
+        renderProducts(filter, true);
+        // Highlight active link
+        document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+        if (link.tagName === 'A') link.classList.add('active');
+
+        // Scroll to store
+        document.getElementById('store').scrollIntoView({ behavior: 'smooth' });
+
+        // Close side menu if open
+        sideMenu.classList.remove('active');
+        overlay.classList.remove('active');
+    });
+});
+
 filterButtons.forEach(btn => {
     btn.addEventListener('click', () => {
         filterButtons.forEach(b => b.classList.remove('active'));
@@ -240,6 +258,21 @@ document.querySelector('.cart-footer button').addEventListener('click', () => {
     cart.forEach(item => {
         message += `📌 رقم: ${item.number}\n\n`;
     });
+    const whatsappUrl = `https://wa.me/201272202020?text=${encodeURIComponent(message)}`;
+    window.open(whatsappUrl, '_blank');
+});
+
+document.querySelector('.sell-form').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    const name = formData.get('name');
+    const phone = formData.get('phone');
+    const location = formData.get('location');
+    const sellNumber = formData.get('sell_number');
+    const askingPrice = formData.get('asking_price');
+    const notes = formData.get('notes');
+
+    const message = `مرحباً زين للأرقام المميزة، أود بيع رقمي المميز:\n\n👤 الاسم: ${name}\n📞 رقم التواصل: ${phone}\n📍 المكان: ${location}\n🔢 الرقم المراد بيعه: ${sellNumber}\n💰 السعر المطلوب: ${askingPrice}\n📝 ملاحظات: ${notes || 'لا يوجد'}`;
     const whatsappUrl = `https://wa.me/201272202020?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, '_blank');
 });
@@ -314,7 +347,8 @@ addProductForm.addEventListener('submit', (e) => {
         category: document.getElementById('prodCategory').value,
         type: document.getElementById('prodType').value,
         details: document.getElementById('prodDetails').value || '',
-        otherDetails: document.getElementById('prodOtherDetails').value || ''
+        otherDetails: document.getElementById('prodOtherDetails').value || '',
+        isTodayOffer: document.getElementById('prodTodayOffer').checked
     };
 
     saveProducts(newProd);
@@ -335,6 +369,10 @@ renderProducts = function (filter = 'all', showAll = false) {
 
     if (filter === 'all') {
         filteredProducts = allProducts;
+    } else if (filter === 'today-offer') {
+        filteredProducts = allProducts.filter(p => p.isTodayOffer === true || p.category === 'today-offer');
+    } else if (filter === 'we-offer') {
+        filteredProducts = allProducts.filter(p => p.category === 'we-offer');
     } else if (filter === 'vodafone-010') {
         filteredProducts = allProducts.filter(p => p.category === filter || p.number.replace(/\D/g, '').startsWith('010'));
     } else if (filter === 'etisalat-011') {
@@ -373,8 +411,9 @@ renderProducts = function (filter = 'all', showAll = false) {
     productsToDisplay.forEach(product => {
         const card = document.createElement('div');
         card.className = 'product-card';
+        const badgeText = product.isTodayOffer ? 'عرض اليوم 🔥' : product.type;
         card.innerHTML = `
-            <div class="card-badge badge-gold">${product.type}</div>
+            <div class="card-badge badge-gold">${badgeText}</div>
             <div class="number-display" onclick="window.location.href='details.html?id=${product.id}'" style="cursor: pointer;">
                 <h2 dir="ltr">${product.number}</h2>
                 ${product.details ? `<p class="number-details">${product.details}</p>` : ''}

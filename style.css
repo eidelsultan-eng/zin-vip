@@ -1397,25 +1397,64 @@ body {
     }
 }
 
-/* Other Details Section */
-.other-details {
-    animation: fadeIn 0.3s ease;
+/* Sell Section */
+.sell-section {
+    padding: 100px 0;
+    background: rgba(255, 255, 255, 0.01);
 }
 
-.number-display:hover h2 {
-    color: var(--primary-color);
-    transform: scale(1.02);
+.sell-box {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 50px;
+}
+
+.important-note {
+    background: rgba(255, 77, 77, 0.05);
+    border-right: 4px solid #ff4d4d;
+    padding: 25px;
+    border-radius: 12px;
+    margin-bottom: 40px;
+    line-height: 1.8;
+}
+
+.sell-form .form-group {
+    margin-bottom: 25px;
+}
+
+.sell-form label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: 600;
+    color: var(--light-text);
+}
+
+.sell-form input,
+.sell-form textarea {
+    width: 100%;
+    padding: 15px 20px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+    color: white;
+    font-family: inherit;
     transition: var(--transition);
 }
 
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(-10px);
-    }
+.sell-form input:focus,
+.sell-form textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    background: rgba(255, 255, 255, 0.08);
+}
 
-    to {
-        opacity: 1;
-        transform: translateY(0);
+.sell-form textarea {
+    height: 120px;
+    resize: none;
+}
+
+@media (max-width: 768px) {
+    .sell-box {
+        padding: 30px 20px;
     }
 }
