@@ -11,7 +11,7 @@
     --silver: #C0C0C0;
     --glass: rgba(255, 255, 255, 0.05);
     --glass-border: rgba(255, 255, 255, 0.1);
-    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 * {
@@ -187,15 +187,50 @@ body {
 }
 
 .badge {
-    display: inline-block;
-    padding: 6px 20px;
-    background: rgba(0, 182, 189, 0.1);
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px 25px;
+    background: rgba(0, 182, 189, 0.08);
     color: var(--primary-color);
-    border-radius: 50px;
+    border-radius: 20px;
     font-weight: 700;
-    margin-bottom: 38px;
-    border: 1px solid rgba(0, 182, 189, 0.2);
-    font-size: 1.6rem;
+    margin-bottom: 30px;
+    border: 1px solid rgba(0, 182, 189, 0.15);
+    gap: 5px;
+}
+
+.badge .name {
+    font-size: 2.2rem;
+    line-height: 1;
+    display: block;
+    animation: nameFloat 3s ease-in-out infinite;
+    text-shadow: 0 0 15px rgba(0, 182, 189, 0.3);
+}
+
+.badge .subtext {
+    font-size: 1.1rem;
+    opacity: 0.8;
+}
+
+@keyframes nameFloat {
+
+    0%,
+    100% {
+        transform: translateY(0) translateX(0);
+    }
+
+    25% {
+        transform: translateY(-5px) translateX(2px);
+    }
+
+    50% {
+        transform: translateY(0) translateX(-2px);
+    }
+
+    75% {
+        transform: translateY(5px) translateX(2px);
+    }
 }
 
 .hero-text p {
@@ -897,6 +932,90 @@ body {
 }
 
 /* Responsive */
+.mobile-menu-btn {
+    display: block;
+    font-size: 24px;
+    cursor: pointer;
+    color: var(--light-text);
+    order: -1;
+    margin-left: 15px;
+    transition: var(--transition);
+}
+
+.mobile-menu-btn:hover {
+    color: var(--primary-color);
+}
+
+/* Side Menu */
+.side-menu {
+    position: fixed;
+    top: 0;
+    right: -300px;
+    width: 300px;
+    height: 100vh;
+    background: #1a1a1a;
+    z-index: 2100;
+    transition: var(--transition);
+    padding: 30px;
+    border-left: 1px solid var(--glass-border);
+    box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
+}
+
+.side-menu.active {
+    right: 0;
+}
+
+.side-menu-header {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 40px;
+}
+
+#closeSideMenu {
+    font-size: 22px;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+#closeSideMenu:hover {
+    color: var(--secondary-color);
+    transform: rotate(90deg);
+}
+
+.side-menu-content {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.side-link {
+    color: var(--light-text);
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: 600;
+    padding: 12px 20px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.03);
+    transition: var(--transition);
+}
+
+.side-link:hover {
+    background: var(--glass);
+    color: var(--primary-color);
+    padding-right: 25px;
+}
+
+.admin-btn {
+    background: rgba(0, 182, 189, 0.1);
+    color: var(--primary-color);
+    border: 1px solid rgba(0, 182, 189, 0.2);
+}
+
+.admin-btn:hover {
+    background: var(--primary-color);
+    color: white;
+}
+
 @media (max-width: 992px) {
     .container {
         padding: 0 20px;
@@ -923,115 +1042,115 @@ body {
     }
 }
 
-@media (max-width: 768px) {
-    .nav-links {
-        display: none;
-    }
+.mobile-menu-btn {
+    display: block;
+    cursor: pointer;
+}
 
-    .logo h1 {
-        font-size: 22px;
-        white-space: nowrap;
-    }
+.logo h1 {
+    font-size: 22px;
+    white-space: nowrap;
+}
 
-    .logo h1 span {
-        font-size: 18px;
-    }
+.logo h1 span {
+    font-size: 18px;
+}
 
-    .search-box {
-        width: 100px;
-    }
+.search-box {
+    width: 100px;
+}
 
-    .search-box input {
-        width: 65px;
-    }
+.search-box input {
+    width: 65px;
+}
 
-    .hero {
-        padding-top: 60px;
-        padding-bottom: 10px;
-    }
+.hero {
+    padding-top: 60px;
+    padding-bottom: 10px;
+}
 
-    section {
-        padding: 40px 0;
-    }
+section {
+    padding: 40px 0;
+}
 
-    .hero-text h1 {
-        font-size: 1.8rem;
-        margin-bottom: 5px;
-    }
+.hero-text h1 {
+    font-size: 1.8rem;
+    margin-bottom: 5px;
+}
 
-    .badge {
-        margin-bottom: 5px;
-    }
+.badge {
+    margin-bottom: 5px;
+}
 
-    .hero-text p {
-        margin-bottom: 10px;
-    }
+.hero-text p {
+    margin-bottom: 10px;
+}
 
-    .products-grid {
-        grid-template-columns: 1fr !important;
-        gap: 12px;
-    }
+.products-grid {
+    grid-template-columns: 1fr !important;
+    gap: 12px;
+}
 
-    .product-card {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-between;
-        padding: 12px 18px;
-        border-radius: 15px;
-        min-height: 70px;
-        gap: 12px;
-    }
+.product-card {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 18px;
+    border-radius: 15px;
+    min-height: 70px;
+    gap: 12px;
+}
 
-    .card-badge {
-        position: static;
-        font-size: 10px;
-        padding: 2px 8px;
-        order: 1;
-        transform: none;
-        margin: 0;
-    }
+.card-badge {
+    position: static;
+    font-size: 10px;
+    padding: 2px 8px;
+    order: 1;
+    transform: none;
+    margin: 0;
+}
 
-    .number-display {
-        padding: 0;
-        text-align: right;
-        flex-grow: 1;
-        order: 2;
-        margin: 0 10px;
-    }
+.number-display {
+    padding: 0;
+    text-align: right;
+    flex-grow: 1;
+    order: 2;
+    margin: 0 10px;
+}
 
-    .number-display h2 {
-        font-size: 1.3rem;
-        margin: 0;
-        letter-spacing: 0.5px;
-    }
+.number-display h2 {
+    font-size: 1.3rem;
+    margin: 0;
+    letter-spacing: 0.5px;
+}
 
-    .card-info {
-        margin-top: 0;
-        padding-top: 0;
-        border-top: none;
-        width: auto;
-        order: 3;
-    }
+.card-info {
+    margin-top: 0;
+    padding-top: 0;
+    border-top: none;
+    width: auto;
+    order: 3;
+}
 
-    .add-to-cart {
-        padding: 6px 12px;
-        font-size: 0.8rem;
-        width: auto !important;
-        height: auto;
-        min-width: 110px;
-        justify-content: center;
-        gap: 6px;
-    }
+.add-to-cart {
+    padding: 6px 12px;
+    font-size: 0.8rem;
+    width: auto !important;
+    height: auto;
+    min-width: 110px;
+    justify-content: center;
+    gap: 6px;
+}
 
-    .steps-grid {
-        grid-template-columns: 1fr;
-    }
+.steps-grid {
+    grid-template-columns: 1fr;
+}
 
-    .cart-sidebar {
-        width: 100%;
-        left: -100%;
-    }
+.cart-sidebar {
+    width: 100%;
+    left: -100%;
+}
 }
 
 @media (max-width: 480px) {
@@ -1082,9 +1201,20 @@ body {
     }
 
     .hero {
-        padding-top: 180px;
-        /* مسافة 3 سم تقريباً بعد الهيدر */
+        padding-top: 100px;
         padding-bottom: 20px;
+    }
+
+    .badge {
+        margin-bottom: 20px;
+    }
+
+    .badge .name {
+        font-size: 1.8rem;
+    }
+
+    .badge .subtext {
+        font-size: 0.9rem;
     }
 
     .section-title {
@@ -1130,32 +1260,25 @@ body {
     }
 }
 
- / *   O t h e r   D e t a i l s   S e c t i o n   * /   . o t h e r - d e t a i l s    {
-               a n i m a t i o n :    f a d e I n   0 . 3 s   e a s e ;
-       
+/* Other Details Section */
+.other-details {
+    animation: fadeIn 0.3s ease;
 }
 
-     . n u m b e r - d i s p l a y : h o v e r   h 2    {
-               c o l o r :    v a r ( - - p r i m a r y - c o l o r ) ;
-               t r a n s f o r m :    s c a l e ( 1 . 0 2 ) ;
-               t r a n s i t i o n :    v a r ( - - t r a n s i t i o n ) ;
-       
+.number-display:hover h2 {
+    color: var(--primary-color);
+    transform: scale(1.02);
+    transition: var(--transition);
 }
 
-     @ k e y f r a m e s   f a d e I n    {
-               f r o m    {
-                           o p a c i t y :    0 ;
-                           t r a n s f o r m :    t r a n s l a t e Y ( - 1 0 p x ) ;
-                   
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
     }
 
-               t o    {
-                           o p a c i t y :    1 ;
-                           t r a n s f o r m :    t r a n s l a t e Y ( 0 ) ;
-                   
+    to {
+        opacity: 1;
+        transform: translateY(0);
     }
-
-       
 }
-
-     

@@ -113,23 +113,80 @@ function closeCart() {
 // Event Listeners
 cartToggle.addEventListener('click', openCart);
 cartClose.addEventListener('click', closeCart);
-overlay.addEventListener('click', closeCart);
 
+// Menu Elements
+const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+const sideMenu = document.getElementById('sideMenu');
+const closeSideMenu = document.getElementById('closeSideMenu');
+const sideLinks = document.querySelectorAll('.side-link');
+
+overlay.addEventListener('click', () => {
+    closeCart();
+    adminPanel.classList.remove('active');
+    sideMenu.classList.remove('active');
+    overlay.classList.remove('active');
+});
+
+// Sidebar Toggle
+mobileMenuBtn.addEventListener('click', () => {
+    sideMenu.classList.add('active');
+    overlay.classList.add('active');
+});
+
+closeSideMenu.addEventListener('click', () => {
+    sideMenu.classList.remove('active');
+    overlay.classList.remove('active');
+});
+
+// Close side menu when clicking links
+sideLinks.forEach(link => {
+    if (!link.classList.contains('openAdminLink')) {
+        link.addEventListener('click', () => {
+            sideMenu.classList.remove('active');
+            overlay.classList.remove('active');
+        });
+    }
+});
+
+// Admin Panel Logic
+const adminPanel = document.getElementById('adminPanel');
+const adminClose = document.getElementById('adminClose');
+const openAdminLinks = document.querySelectorAll('.openAdminLink');
+const addProductForm = document.getElementById('addProductForm');
+const addedProdsList = document.getElementById('addedProdsList');
+
+const ADMIN_PASSWORD = '010qwe';
+
+openAdminLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const pass = prompt('الرجاء إدخال كلمة السر للدخول لوحة التحكم:');
+        if (pass === ADMIN_PASSWORD) {
+            adminPanel.classList.add('active');
+            overlay.classList.add('active');
+            sideMenu.classList.remove('active'); // Close side menu
+            renderAdminList();
+        } else if (pass !== null) {
+            alert('كلمة السر غير صحيحة!');
+        }
+    });
+});
+
+adminClose.addEventListener('click', () => {
+    adminPanel.classList.remove('active');
+    overlay.classList.remove('active');
+});
+
+// Restore Logic
 filterButtons.forEach(btn => {
     btn.addEventListener('click', () => {
         filterButtons.forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
         renderProducts(btn.dataset.filter);
-
-        // Scroll to products
         document.getElementById('productsGrid').scrollIntoView({ behavior: 'smooth', block: 'center' });
     });
 });
 
-// Initial Render
-renderProducts();
-
-// Search Functionality
 const searchInput = document.querySelector('.search-box input');
 searchInput.addEventListener('input', (e) => {
     const query = e.target.value;
@@ -162,9 +219,6 @@ searchInput.addEventListener('input', (e) => {
     });
 });
 
-
-
-// Direct Order via WhatsApp
 window.orderNow = (productId) => {
     const allAvailable = [...products, ...customProducts];
     const product = allAvailable.find(p => p.id === productId);
@@ -175,59 +229,27 @@ window.orderNow = (productId) => {
     }
 };
 
-// Checkout via WhatsApp
 document.querySelector('.cart-footer button').addEventListener('click', () => {
     if (cart.length === 0) {
         alert('السلة فارغة!');
         return;
     }
-
     let message = 'مرحباً زين للأرقام المميزة، أود الاستفسار عن الأرقام التالية:\n\n';
     cart.forEach(item => {
         message += `📌 رقم: ${item.number}\n\n`;
     });
-    message += `━━━━━━━━━━━━━━`;
-
     const whatsappUrl = `https://wa.me/201272202020?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, '_blank');
 });
 
-// Contact Form Handling
 document.querySelector('.contact-form').addEventListener('submit', (e) => {
     e.preventDefault();
     const name = e.target.querySelector('input[type="text"]').value;
     const phone = e.target.querySelector('input[type="tel"]').value;
     const message = e.target.querySelector('textarea').value;
-
     const fullMessage = `مرحباً زين للأرقام المميزة،\n\nالاسم: ${name}\nرقم الهاتف: ${phone}\nالرسالة: ${message}`;
-
     const whatsappUrl = `https://wa.me/201272202020?text=${encodeURIComponent(fullMessage)}`;
     window.open(whatsappUrl, '_blank');
-});
-// Admin Panel Logic
-const adminPanel = document.getElementById('adminPanel');
-const openAdmin = document.getElementById('openAdmin');
-const adminClose = document.getElementById('adminClose');
-const addProductForm = document.getElementById('addProductForm');
-const addedProdsList = document.getElementById('addedProdsList');
-
-const ADMIN_PASSWORD = '010qwe';
-
-openAdmin.addEventListener('click', (e) => {
-    e.preventDefault();
-    const pass = prompt('الرجاء إدخال كلمة السر للدخول لوحة التحكم:');
-    if (pass === ADMIN_PASSWORD) {
-        adminPanel.classList.add('active');
-        overlay.classList.add('active');
-        renderAdminList();
-    } else if (pass !== null) {
-        alert('كلمة السر غير صحيحة!');
-    }
-});
-
-adminClose.addEventListener('click', () => {
-    adminPanel.classList.remove('active');
-    overlay.classList.remove('active');
 });
 
 // Load custom products from Firebase (Online)

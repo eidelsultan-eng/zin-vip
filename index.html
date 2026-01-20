@@ -33,6 +33,9 @@
                 <li><a href="#reviews">آراء عملائنا</a></li>
                 <li><a href="#contact">تواصل معنا</a></li>
             </ul>
+            <div class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </div>
             <div class="nav-actions">
                 <div class="search-box">
                     <input type="text" placeholder="بحث عن رقم...">
@@ -43,17 +46,35 @@
                     <span class="cart-count">0</span>
                 </div>
             </div>
-            <div class="mobile-menu-btn">
-                <i class="fas fa-bars"></i>
-            </div>
         </div>
     </nav>
+
+    <!-- Left Sidebar Menu (Admin Access) -->
+    <div class="side-menu" id="sideMenu">
+        <div class="side-menu-header">
+            <i class="fas fa-times" id="closeSideMenu"></i>
+        </div>
+        <div class="side-menu-content">
+            <a href="#home" class="side-link">الرئيسية</a>
+            <a href="#store" class="side-link">المتجر</a>
+            <a href="#how" class="side-link">كيفية الطلب</a>
+            <a href="#reviews" class="side-link">آراء عملائنا</a>
+            <a href="#contact" class="side-link">تواصل معنا</a>
+            <div class="admin-access-wrapper"
+                style="margin-top: 50px; border-top: 1px solid var(--glass-border); padding-top: 20px;">
+                <a href="#" class="openAdminLink side-link admin-btn"><i class="fas fa-lock"></i> لوحة التحكم</a>
+            </div>
+        </div>
+    </div>
 
     <!-- Hero Section -->
     <header id="home" class="hero">
         <div class="container hero-grid">
             <div class="hero-text">
-                <span class="badge">حسام الجعفراوي للأرقام المميزة</span>
+                <span class="badge">
+                    <span class="name">حسام الجعفراوي</span>
+                    <span class="subtext">للأرقام المميزة</span>
+                </span>
                 <h1>تميزك يبدأ من رقمك <br><span class="highlight">نقدم لك مجموعة من الأرقام المميزة</span></h1>
 
 
@@ -243,7 +264,6 @@
                     <li><a href="#home">الرئيسية</a></li>
                     <li><a href="#store">المتجر</a></li>
                     <li><a href="#how">كيفية الطلب</a></li>
-                    <li><a href="#" id="openAdmin">لوحة التحكم</a></li>
                 </ul>
             </div>
             <div class="social-links">
