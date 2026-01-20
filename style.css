@@ -566,40 +566,86 @@ body {
     background: rgba(255, 255, 255, 0.02);
 }
 
-.steps-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 30px;
-    margin-top: 50px;
+/* Steps */
+.how-it-works {
+    padding: 60px 0;
+    background: rgba(255, 255, 255, 0.01);
 }
 
-.step-card {
-    padding: 40px;
-    background: var(--glass);
-    border: 1px solid var(--glass-border);
+.steps-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px;
     border-radius: 30px;
-    text-align: center;
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.step-item {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    position: relative;
+}
+
+.step-item:not(:last-child)::after {
+    content: '\f105';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    position: absolute;
+    left: -10px;
+    top: 20px;
+    color: var(--glass-border);
+    font-size: 1.5rem;
+}
+
+[dir="rtl"] .step-item:not(:last-child)::after {
+    content: '\f104';
+    left: auto;
+    right: -10px;
 }
 
 .step-icon {
-    width: 60px;
-    height: 60px;
+    width: 45px;
+    height: 45px;
     background: var(--primary-color);
     color: white;
     border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     font-weight: 900;
-    margin: 0 auto 20px;
-    box-shadow: 0 10px 20px rgba(0, 182, 189, 0.3);
+    box-shadow: 0 5px 15px rgba(0, 182, 189, 0.2);
 }
 
-/* Reviews Section */
-.reviews-section {
-    padding: 80px 0;
-    background: rgba(255, 255, 255, 0.01);
+.step-info h3 {
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+}
+
+.step-info p {
+    font-size: 0.85rem;
+    color: var(--gray-text);
+}
+
+@media (max-width: 768px) {
+    .steps-container {
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .step-item:not(:last-child)::after {
+        content: '\f107';
+        top: auto;
+        bottom: -25px;
+        left: 50%;
+        transform: translateX(-50%);
+        right: auto;
+    }
 }
 
 .reviews-grid {
@@ -1268,27 +1314,86 @@ body {
     }
 
     .products-grid {
-        grid-template-columns: repeat(2, 1fr) !important;
-        gap: 10px;
+        grid-template-columns: 1fr !important;
+        gap: 20px;
     }
 
     .product-card {
-        padding: 15px 10px;
-        border-radius: 12px;
         display: flex;
         flex-direction: column;
         align-items: center;
         text-align: center;
+        padding: 40px 20px;
+        border-radius: 30px;
+        background: var(--dark-card);
+        border: 1px solid var(--glass-border);
+        min-height: auto;
+        gap: 0;
+    }
+
+    .card-badge {
+        position: relative;
+        font-size: 13px;
+        padding: 6px 20px;
+        margin-bottom: 30px;
+        background: var(--gold);
+        color: #000;
+        border-radius: 50px;
+        font-weight: 700;
+        order: 1;
+        width: auto;
+    }
+
+    .number-display {
+        padding: 0;
+        text-align: center;
+        width: 100%;
+        order: 2;
+        margin-bottom: 20px;
     }
 
     .number-display h2 {
-        font-size: 1rem;
+        font-size: 2.2rem;
+        margin: 0 0 10px 0;
+        color: #fff;
+        font-weight: 900;
+        letter-spacing: 1px;
+    }
+
+    .number-details {
+        font-size: 1.1rem;
+        color: var(--gray-text);
+        display: block;
+        margin-top: 5px;
+    }
+
+    .card-info {
+        margin: 0;
+        padding: 0 !important;
+        border: none !important;
+        width: 100% !important;
+        order: 3;
+        display: flex;
+        justify-content: center;
     }
 
     .add-to-cart {
-        padding: 8px;
-        font-size: 0.8rem;
-        border-radius: 8px;
+        width: 75% !important;
+        padding: 15px !important;
+        font-size: 1.15rem !important;
+        border-radius: 15px;
+        background: var(--primary-color) !important;
+        color: #fff !important;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        box-shadow: 0 5px 15px rgba(0, 182, 189, 0.2);
+    }
+
+    .price {
+        display: none;
     }
 }
 

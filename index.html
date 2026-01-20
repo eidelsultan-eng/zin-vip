@@ -127,10 +127,13 @@
                 <button class="pill" data-filter="hexa">ارقام مميزة سداسية</button>
                 <button class="pill" data-filter="zeros">ارقام مميزة فيها اصفار كتير</button>
                 <button class="pill" data-filter="3tens">ارقام زيرو 3 عشرات</button>
-                <button class="pill" data-filter="under2000">ارقام بأقل من 2000 جنية</button>
-                <button class="pill" data-filter="2000to5000">من 2000 وحتى 5000 جنية</button>
+                <button class="pill" data-filter="under1000">أقل من 1000 جنية</button>
+                <button class="pill" data-filter="under2000">أقل من 2000 جنية</button>
+                <button class="pill" data-filter="under5000">أقل من 5000 جنية</button>
                 <button class="pill" data-filter="5000to10000">من 5000 وحتى 10 آلاف جنية</button>
-                <button class="pill" data-filter="over10000">أكثر من 10 آلاف جنية</button>
+                <button class="pill" data-filter="10kto20k">من 10000 وحتى 20000 جنية</button>
+                <button class="pill" data-filter="under50k">أقل من 50000 جنية</button>
+                <button class="pill" data-filter="50kto100k">من 50000 إلى 100000 جنية</button>
                 <button class="pill" data-filter="100k">ارقام زيرو مية الف</button>
                 <button class="pill" data-filter="10k">ارقام 010000 عشرة آلاف</button>
                 <button class="pill" data-filter="1k">ارقام 01000 زيرو الف</button>
@@ -148,21 +151,27 @@
             <div class="section-title">
                 <h2>خطوات الحصول على رقمك</h2>
             </div>
-            <div class="steps-grid">
-                <div class="step-card">
+            <div class="steps-container glass-card">
+                <div class="step-item">
                     <div class="step-icon">1</div>
-                    <h3>تصفّح الموقع </h3>
-                    <p>تصفّح الموقع واختر الرقم المميز المناسب لك.</p>
+                    <div class="step-info">
+                        <h3>تصفّح الموقع</h3>
+                        <p>اختر الرقم المميز المناسب لك.</p>
+                    </div>
                 </div>
-                <div class="step-card">
+                <div class="step-item">
                     <div class="step-icon">2</div>
-                    <h3>تواصل معنا</h3>
-                    <p>تواصل معنا عبر واتساب لمعرفة السعر والتفاصيل.</p>
+                    <div class="step-info">
+                        <h3>تواصل معنا</h3>
+                        <p>عبر واتساب لمعرفة التفاصيل.</p>
+                    </div>
                 </div>
-                <div class="step-card">
+                <div class="step-item">
                     <div class="step-icon">3</div>
-                    <h3>نقل الملكية</h3>
-                    <p>يتم نقل ملكية الرقم رسميًا في أقرب فرع لك.</p>
+                    <div class="step-info">
+                        <h3>نقل الملكية</h3>
+                        <p>رسميًا في أقرب فرع لك.</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -205,8 +214,14 @@
                 </div>
                 <div class="review-card"><img src="WhatsApp Image 2026-01-14 at 12.21.36 PM.jpeg" alt="رأي عميل"></div>
                 <div class="review-card"><img src="WhatsApp Image 2026-01-14 at 12.21.37 PM.jpeg" alt="رأي عميل"></div>
+                <div class="text-center" style="margin-top: 40px; text-align: center;">
+                    <a href="https://www.facebook.com/share/p/16s1xT1gz4/?mibextid=wwXIfr" target="_blank"
+                        class="btn btn-primary" style="padding: 15px 40px; border-radius: 50px; font-size: 1.1rem;">
+                        <i class="fab fa-facebook-f" style="margin-left: 10px;"></i>
+                        للمزيد من آراء عملائنا
+                    </a>
+                </div>
             </div>
-        </div>
     </section>
 
     <!-- Contact Section -->
@@ -325,6 +340,12 @@
                 </div>
 
                 <div class="form-group" style="margin-bottom: 20px;">
+                    <label style="display: block; margin-bottom: 8px;">السعر (ج.م)</label>
+                    <input type="number" id="prodPrice" placeholder="مثال: 500" required
+                        style="width: 100%; padding: 12px; border-radius: 10px; background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border); color: white;">
+                </div>
+
+                <div class="form-group" style="margin-bottom: 20px;">
                     <label style="display: block; margin-bottom: 8px;">التصنيف</label>
                     <select id="prodCategory" required
                         style="width: 100%; padding: 12px; border-radius: 10px; background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border); color: white;">
@@ -343,10 +364,13 @@
                         <option value="hexa">ارقام مميزة سداسية</option>
                         <option value="zeros">ارقام مميزة فيها اصفار كتير</option>
                         <option value="3tens">ارقام زيرو 3 عشرات</option>
-                        <option value="under2000">ارقام بأقل من 2000 جنية</option>
-                        <option value="2000to5000">من 2000 وحتى 5000 جنية</option>
+                        <option value="under1000">أقل من 1000 جنية</option>
+                        <option value="under2000">أقل من 2000 جنية</option>
+                        <option value="under5000">أقل من 5000 جنية</option>
                         <option value="5000to10000">من 5000 وحتى 10 آلاف جنية</option>
-                        <option value="over10000">أكثر من 10 آلاف جنية</option>
+                        <option value="10kto20k">من 10000 وحتى 20000 جنية</option>
+                        <option value="under50k">أقل من 50000 جنية</option>
+                        <option value="50kto100k">من 50000 إلى 100000 جنية</option>
                         <option value="100k">ارقام زيرو مية الف</option>
                         <option value="10k">ارقام 010000 عشرة آلاف</option>
                         <option value="1k">ارقام 01000 زيرو الف</option>

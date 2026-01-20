@@ -209,6 +209,7 @@ searchInput.addEventListener('input', (e) => {
                 ${product.details ? `<p class="number-details">${product.details}</p>` : ''}
             </div>
             <div class="card-info">
+                <div class="price" style="font-size: 1.2rem; font-weight: 800; color: var(--primary-color); margin-bottom: 10px;">${product.price > 0 ? product.price.toLocaleString() + ' ج.م' : 'اتصل للسعر'}</div>
                 <div class="add-to-cart" onclick="orderNow(${product.id})" style="width: 100%; border-radius: 12px; background: var(--primary-color); border: none; display: flex; align-items: center; justify-content: center; gap: 8px;">
                     <i class="fab fa-whatsapp"></i>
                     <span>تواصل للشراء</span>
@@ -223,7 +224,8 @@ window.orderNow = (productId) => {
     const allAvailable = [...products, ...customProducts];
     const product = allAvailable.find(p => p.id === productId);
     if (product) {
-        const message = `مرحباً زين للأرقام المميزة، أود طلب الرقم التالي:\n\n📌 رقم: ${product.number}`;
+        const priceText = product.price > 0 ? `${product.price.toLocaleString()} ج.م` : 'سيتم تحديد السعر عند التواصل';
+        const message = `مرحباً زين للأرقام المميزة، أود طلب الرقم التالي:\n\n📌 رقم: ${product.number}\n💰 السعر: ${priceText}`;
         const whatsappUrl = `https://wa.me/201272202020?text=${encodeURIComponent(message)}`;
         window.open(whatsappUrl, '_blank');
     }
@@ -308,7 +310,7 @@ addProductForm.addEventListener('submit', (e) => {
     const newProd = {
         id: Date.now(),
         number: document.getElementById('prodNumber').value,
-        price: 0,
+        price: parseInt(document.getElementById('prodPrice').value) || 0,
         category: document.getElementById('prodCategory').value,
         type: document.getElementById('prodType').value,
         details: document.getElementById('prodDetails').value || '',
@@ -341,6 +343,20 @@ renderProducts = function (filter = 'all', showAll = false) {
         filteredProducts = allProducts.filter(p => p.category === filter || p.number.replace(/\D/g, '').startsWith('012'));
     } else if (filter === 'we-015') {
         filteredProducts = allProducts.filter(p => p.category === filter || p.number.replace(/\D/g, '').startsWith('015'));
+    } else if (filter === 'under1000') {
+        filteredProducts = allProducts.filter(p => p.category === filter || (p.price > 0 && p.price < 1000));
+    } else if (filter === 'under2000') {
+        filteredProducts = allProducts.filter(p => p.category === filter || (p.price > 0 && p.price < 2000));
+    } else if (filter === 'under5000') {
+        filteredProducts = allProducts.filter(p => p.category === filter || (p.price > 0 && p.price < 5000));
+    } else if (filter === '5000to10000') {
+        filteredProducts = allProducts.filter(p => p.category === filter || (p.price >= 5000 && p.price <= 10000));
+    } else if (filter === '10kto20k') {
+        filteredProducts = allProducts.filter(p => p.category === filter || (p.price >= 10000 && p.price <= 20000));
+    } else if (filter === 'under50k') {
+        filteredProducts = allProducts.filter(p => p.category === filter || (p.price > 0 && p.price < 50000));
+    } else if (filter === '50kto100k') {
+        filteredProducts = allProducts.filter(p => p.category === filter || (p.price >= 50000 && p.price <= 100000));
     } else {
         filteredProducts = allProducts.filter(p => p.category === filter);
     }
@@ -364,6 +380,7 @@ renderProducts = function (filter = 'all', showAll = false) {
                 ${product.details ? `<p class="number-details">${product.details}</p>` : ''}
             </div>
             <div class="card-info">
+                <div class="price" style="font-size: 1.2rem; font-weight: 800; color: var(--primary-color); margin-bottom: 10px;">${product.price > 0 ? product.price.toLocaleString() + ' ج.م' : 'اتصل للسعر'}</div>
                 <div class="add-to-cart" onclick="orderNow(${product.id})" style="width: 100%; border-radius: 12px; background: var(--primary-color); border: none; display: flex; align-items: center; justify-content: center; gap: 8px;">
                     <i class="fab fa-whatsapp"></i>
                     <span>تواصل للشراء</span>

@@ -149,11 +149,13 @@
                         <div class="details-type">${product.type}</div>
                         <h2 class="details-number" dir="ltr">${product.number}</h2>
                         <div class="details-content">
-                            <h4 style="margin-bottom: 10px; color: var(--primary-color);">تفاصيل إضافية:</h4>
+                            <h4 style="margin-bottom: 10px; color: var(--primary-color);">السعر:</h4>
+                            <p style="font-size: 1.5rem; font-weight: 800; color: var(--gold);">${product.price > 0 ? product.price.toLocaleString() + ' ج.م' : 'اتصل للسعر'}</p>
+                            <h4 style="margin-top: 20px; margin-bottom: 10px; color: var(--primary-color);">تفاصيل إضافية:</h4>
                             <p>${product.otherDetails || 'لا توجد تفاصيل إضافية متاحة حالياً لهذا الرقم.'}</p>
                         </div>
                         <div style="display: flex; flex-direction: column; gap: 15px;">
-                            <button onclick="orderViaWA('${product.number}')" class="btn btn-primary btn-block" style="width: 100%; justify-content: center; font-size: 1.2rem; padding: 15px;">
+                            <button onclick="orderViaWA('${product.number}', '${product.price}')" class="btn btn-primary btn-block" style="width: 100%; justify-content: center; font-size: 1.2rem; padding: 15px;">
                                 <i class="fab fa-whatsapp"></i>
                                 اطلب الآن عبر واتساب
                             </button>
@@ -169,8 +171,9 @@
             });
         }
 
-        window.orderViaWA = (number) => {
-            const message = `مرحباً زين للأرقام المميزة، أود طلب الرقم التالي:\n\n📌 رقم: ${number}`;
+        window.orderViaWA = (number, price) => {
+            const priceText = price > 0 ? `${parseInt(price).toLocaleString()} ج.م` : 'سيتم تحديد السعر عند التواصل';
+            const message = `مرحباً زين للأرقام المميزة، أود طلب الرقم التالي:\n\n📌 رقم: ${number}\n💰 السعر: ${priceText}`;
             const whatsappUrl = `https://wa.me/201272202020?text=${encodeURIComponent(message)}`;
             window.open(whatsappUrl, '_blank');
         };
