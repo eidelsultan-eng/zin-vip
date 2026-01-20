@@ -138,6 +138,18 @@ closeSideMenu.addEventListener('click', () => {
     overlay.classList.remove('active');
 });
 
+// Help Bar Scroll
+const helpScrollBtn = document.getElementById('helpScrollBtn');
+if (helpScrollBtn) {
+    helpScrollBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        const filtersSection = document.getElementById('filters-section');
+        if (filtersSection) {
+            filtersSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    });
+}
+
 // Close side menu when clicking links
 sideLinks.forEach(link => {
     if (!link.classList.contains('openAdminLink')) {
@@ -208,8 +220,12 @@ filterButtons.forEach(btn => {
 const searchInput = document.querySelector('.search-box input');
 searchInput.addEventListener('input', (e) => {
     const query = e.target.value;
-    const allAvailable = [...products, ...customProducts];
-    const filtered = allAvailable.filter(p => p.number.replace(/\s/g, '').replace(/\./g, '').includes(query.replace(/\s/g, '').replace(/\./g, '')));
+    const allProducts = [...products, ...customProducts];
+    const filtered = allProducts.filter(p => {
+        const queryClean = query.replace(/\D/g, '');
+        const numClean = p.number.replace(/\D/g, '');
+        return numClean.includes(queryClean);
+    });
 
     productsGrid.innerHTML = '';
     if (filtered.length === 0) {
@@ -305,6 +321,7 @@ productsRef.on('value', (snapshot) => {
     }
     // Re-render everything once data is received
     renderProducts(currentFilter, true);
+    renderTodayOffers();
     if (adminPanel.classList.contains('active')) {
         renderAdminList();
     }
@@ -344,11 +361,11 @@ addProductForm.addEventListener('submit', (e) => {
         id: Date.now(),
         number: document.getElementById('prodNumber').value,
         price: parseInt(document.getElementById('prodPrice').value) || 0,
-        category: document.getElementById('prodCategory').value,
         type: document.getElementById('prodType').value,
         details: document.getElementById('prodDetails').value || '',
         otherDetails: document.getElementById('prodOtherDetails').value || '',
-        isTodayOffer: document.getElementById('prodTodayOffer').checked
+        isTodayOffer: document.getElementById('prodTodayOffer').checked,
+        isMultiple: document.getElementById('prodIsMultiple').checked
     };
 
     saveProducts(newProd);
@@ -374,11 +391,11 @@ renderProducts = function (filter = 'all', showAll = false) {
     } else if (filter === 'we-offer') {
         filteredProducts = allProducts.filter(p => p.category === 'we-offer');
     } else if (filter === 'vodafone-010') {
-        filteredProducts = allProducts.filter(p => p.category === filter || p.number.replace(/\D/g, '').startsWith('010'));
+        filteredProducts = allProducts.filter(p => p.category === filter || p.number.replace(/\D/g, '').startsWith('010') || p.isMultiple);
     } else if (filter === 'etisalat-011') {
-        filteredProducts = allProducts.filter(p => p.category === filter || p.number.replace(/\D/g, '').startsWith('011'));
+        filteredProducts = allProducts.filter(p => p.category === filter || p.number.replace(/\D/g, '').startsWith('011') || p.isMultiple);
     } else if (filter === 'orange-012') {
-        filteredProducts = allProducts.filter(p => p.category === filter || p.number.replace(/\D/g, '').startsWith('012'));
+        filteredProducts = allProducts.filter(p => p.category === filter || p.number.replace(/\D/g, '').startsWith('012') || p.isMultiple);
     } else if (filter === 'we-015') {
         filteredProducts = allProducts.filter(p => p.category === filter || p.number.replace(/\D/g, '').startsWith('015'));
     } else if (filter === 'under1000') {
@@ -411,7 +428,8 @@ renderProducts = function (filter = 'all', showAll = false) {
     productsToDisplay.forEach(product => {
         const card = document.createElement('div');
         card.className = 'product-card';
-        const badgeText = product.isTodayOffer ? 'عرض اليوم 🔥' : product.type;
+        let badgeText = product.isTodayOffer ? 'عرض اليوم 🔥' : product.type;
+        if (product.isMultiple && !product.isTodayOffer) badgeText = 'رقم مميز';
         card.innerHTML = `
             <div class="card-badge badge-gold">${badgeText}</div>
             <div class="number-display" onclick="window.location.href='details.html?id=${product.id}'" style="cursor: pointer;">
@@ -443,5 +461,39 @@ renderProducts = function (filter = 'all', showAll = false) {
     }
 };
 
+function renderTodayOffers() {
+    const grid = document.getElementById('todayOfferGrid');
+    if (!grid) return;
+    grid.innerHTML = '';
+
+    const allProducts = [...products, ...customProducts];
+    const offers = allProducts.filter(p => p.isTodayOffer === true).slice(0, 4);
+
+    if (offers.length === 0) {
+        grid.innerHTML = '<div style="grid-column: 1/-1; text-align: center; padding: 30px; color: var(--gray-text);">لا توجد عروض حصرية اليوم. ترقبوا المزيد قريباً!</div>';
+        return;
+    }
+
+    offers.forEach(product => {
+        const card = document.createElement('div');
+        card.className = 'product-card';
+        card.innerHTML = `
+            <div class="card-badge badge-gold">عرض اليوم 🔥</div>
+            <div class="number-display" onclick="window.location.href='details.html?id=${product.id}'" style="cursor: pointer;">
+                <h2 dir="ltr">${product.number}</h2>
+            </div>
+            <div class="card-info">
+                <div class="price" style="font-size: 1.2rem; font-weight: 800; color: var(--primary-color); margin-bottom: 10px;">${product.price > 0 ? product.price.toLocaleString() + ' ج.م' : 'اتصل للسعر'}</div>
+                <div class="add-to-cart" onclick="orderNow(${product.id})" style="width: 100%; border-radius: 12px; background: var(--primary-color); border: none; display: flex; align-items: center; justify-content: center; gap: 8px;">
+                    <i class="fab fa-whatsapp"></i>
+                    <span>تواصل للشراء</span>
+                </div>
+            </div>
+        `;
+        grid.appendChild(card);
+    });
+}
+
 // Re-render initially to catch custom products
 renderProducts();
+renderTodayOffers();

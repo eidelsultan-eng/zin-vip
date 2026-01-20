@@ -42,13 +42,19 @@
                 <ul class="nav-links">
                     <li><a href="#home" class="active">الرئيسية</a></li>
                     <li><a href="#store" data-nav-filter="today-offer">عرض اليوم</a></li>
-                    <li><a href="#sell">بيع رقمك</a></li>
                     <li><a href="#store" data-nav-filter="we-offer">باقات WE بخـصم 50%</a></li>
                     <li><a href="#reviews">آراء العملاء</a></li>
+                    <li><a href="#sell">بيع رقمك</a></li>
                 </ul>
                 <div class="mobile-menu-btn">
                     <i class="fas fa-bars"></i>
                 </div>
+            </div>
+        </div>
+        <div class="nav-help-bar">
+            <div class="container">
+                <a href="#filters-section" id="helpScrollBtn">اضغط هنا لنساعدك في اختيار رقم يناسبك <i
+                        class="fas fa-chevron-down"></i></a>
             </div>
         </div>
     </nav>
@@ -61,9 +67,9 @@
         <div class="side-menu-content">
             <a href="#home" class="side-link">الرئيسية</a>
             <a href="#store" class="side-link" data-nav-filter="today-offer">عرض اليوم</a>
-            <a href="#sell" class="side-link">بيع رقمك</a>
             <a href="#store" class="side-link" data-nav-filter="we-offer">باقات WE بخـصم 50%</a>
             <a href="#reviews" class="side-link">آراء العملاء</a>
+            <a href="#sell" class="side-link">بيع رقمك</a>
             <a href="#contact" class="side-link">تواصل معنا</a>
             <div class="admin-access-wrapper"
                 style="margin-top: 50px; border-top: 1px solid var(--glass-border); padding-top: 20px;">
@@ -106,7 +112,7 @@
     </section>
 
     <!-- Filters Section -->
-    <section class="filters-section">
+    <section id="filters-section" class="filters-section">
         <div class="container">
             <div class="section-title">
                 <h2>اختار الشكل اللي بتدور عليه</h2>
@@ -223,6 +229,20 @@
                     </a>
                 </div>
             </div>
+    </section>
+
+    <!-- Today's Offer Section (Moved after reviews) -->
+    <section id="today-offer-section" class="store-section today-offer-section"
+        style="background: rgba(var(--primary-rgb), 0.05); border-top: 1px solid var(--glass-border);">
+        <div class="container">
+            <div class="section-title">
+                <h2>عروض اليوم الحصرية 🔥</h2>
+                <p>أفضل الأرقام بأقل الأسعار لفترة محدودة</p>
+            </div>
+            <div class="products-grid" id="todayOfferGrid">
+                <!-- Today's offers will be injected by JS -->
+            </div>
+        </div>
     </section>
 
     <!-- Sell Section -->
@@ -396,9 +416,16 @@
                         style="width: 100%; padding: 12px; border-radius: 10px; background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border); color: white;">
                 </div>
 
-                <div class="form-group" style="margin-bottom: 20px; display: flex; align-items: center; gap: 10px;">
-                    <input type="checkbox" id="prodTodayOffer" style="width: 20px; height: 20px; cursor: pointer;">
-                    <label for="prodTodayOffer" style="cursor: pointer;">تمييز كـ "عرض اليوم"</label>
+                <div class="form-group" style="margin-bottom: 20px; display: flex; flex-wrap: wrap; gap: 20px;">
+                    <div style="display: flex; align-items: center; gap: 10px;">
+                        <input type="checkbox" id="prodTodayOffer" style="width: 20px; height: 20px; cursor: pointer;">
+                        <label for="prodTodayOffer" style="cursor: pointer;">تمييز كـ "عرض اليوم"</label>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 10px;">
+                        <input type="checkbox" id="prodIsMultiple" style="width: 20px; height: 20px; cursor: pointer;">
+                        <label for="prodIsMultiple" style="cursor: pointer;">رقم متعدد (Vodafone, Orange,
+                            Etisalat)</label>
+                    </div>
                 </div>
                 <div class="form-group" style="margin-bottom: 20px;">
                     <label style="display: block; margin-bottom: 8px;">التصنيف</label>
